@@ -17,6 +17,7 @@ export const posts = [
             dislikedBy: [],
         },
         username: "adarshbalika",
+        userId: 1,
         createdAt: formatDate(),
         updatedAt: formatDate(),
         comments: [
@@ -49,7 +50,7 @@ export const posts = [
             dislikedBy: [],
         },
         username: "parthgabani",
-
+        userId: 2,
         comments: [
             {
                 _id: uuid(),
