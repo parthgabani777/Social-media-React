@@ -4,12 +4,11 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { login } from "../../slices/authSlice";
+import { CustomLoader } from "../../components/customLoader/customloader";
 
 function Login() {
-    const auth = useSelector((state) => state.authReducer);
-
+    const { isLoading } = useSelector((state) => state.authReducer);
     const dispatch = useDispatch();
-
     const navigation = useNavigate();
     const location = useLocation();
     const from = location.state?.from || "/";
@@ -23,7 +22,6 @@ function Login() {
     const [loginCredentials, setLoginCredentials] = useState(
         defaultLoginCredentials
     );
-
     const loginCredentialsChangeHandler = (e) => {
         setLoginCredentials({
             ...loginCredentials,
@@ -40,6 +38,8 @@ function Login() {
             console.log(error);
         }
     };
+
+    if (isLoading) return <CustomLoader />;
 
     return (
         <section className="login">

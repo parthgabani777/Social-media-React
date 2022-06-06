@@ -10,8 +10,8 @@ const initialState = {
 export const login = createAsyncThunk(
     "auth/login",
     async ({ loginCredentials }) => {
-        const auth = await loginUserService(loginCredentials); //pending,fulfilled,rejected
-        return { auth };
+        const auth = await loginUserService(loginCredentials);
+        return auth;
     }
 );
 
@@ -34,34 +34,30 @@ export const authSlice = createSlice({
         },
     },
     extraReducers: {
-        [login.pending]: (state, action) => {
+        [login.pending]: (state) => {
             state.isLoading = true;
         },
-        [login.fulfilled]: (
-            state,
-            {
-                payload: {
-                    auth: { encodedToken },
-                },
-            }
-        ) => {
+        [login.fulfilled]: (state, { payload: { encodedToken } }) => {
             localStorage.setItem("token", encodedToken);
             state.isAuthorized = true;
             state.token = encodedToken;
             state.isLoading = false;
         },
-        [login.rejected]: (state, action) => {
+        [login.rejected]: (state) => {
             state.isLoading = false;
         },
 
-        [signup.fulfilled]: (
-            state,
-            { payload: { encodedToken, createdUser } }
-        ) => {
+        [signup.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [signup.fulfilled]: (state, { payload: { encodedToken } }) => {
             localStorage.setItem("token", encodedToken);
             state.isAuthorized = true;
             state.token = encodedToken;
-            state.user = createdUser;
+            state.isLoading = false;
+        },
+        [signup.rejected]: (state) => {
+            state.isLoading = false;
         },
     },
 });

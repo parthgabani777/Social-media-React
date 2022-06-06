@@ -1,11 +1,13 @@
 import "./auth.css";
 import { React, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { signup } from "../../slices/authSlice";
+import { CustomLoader } from "../../components/customLoader/customloader";
 
 function Signup() {
+    const { isLoading } = useSelector((state) => state.authReducer);
     const dispatch = useDispatch();
     const navigation = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
@@ -42,6 +44,8 @@ function Signup() {
             console.log(error);
         }
     };
+
+    if (isLoading) return <CustomLoader />;
 
     return (
         <section className="signup bg-primary">

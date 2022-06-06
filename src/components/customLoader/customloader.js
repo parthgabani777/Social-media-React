@@ -1,6 +1,6 @@
 import { ClipLoader } from "react-spinners";
 
-function CustomLoader() {
+export function CustomLoader() {
     const loaderStyle = {
         position: "absolute",
         top: "50%",
@@ -9,5 +9,3 @@ function CustomLoader() {
 
     return <ClipLoader css={loaderStyle} color="white" size="75px" />;
 }
-
-export { CustomLoader };
