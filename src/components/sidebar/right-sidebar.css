@@ -1,0 +1,68 @@
+.right-sidebar {
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: 30%;
+    box-shadow: 1px 0 1px 1px var(--light-white-color-2);
+    padding: 2rem 4rem 2rem 3rem;
+}
+
+.right-sidebar .search-box {
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    padding: var(--spacing-xs) var(--spacing-s);
+    color: var(--light-white-color-2);
+    background: var(--light-black-color);
+    width: 100%;
+}
+
+.right-sidebar .follow-suggestion {
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: var(--light-black-color);
+    color: var(--light-white-color-2);
+    border-radius: 2rem;
+}
+
+.follow-suggestion-header {
+    padding-bottom: 2rem;
+}
+
+.right-sidebar .user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.follow-suggestion .user {
+    display: flex;
+    justify-content: space-between;
+}
+
+.follow-suggestion .user-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.follow-suggestion .user-picture {
+    padding: 0;
+}
+.follow-suggestion .user-picture i {
+    font-size: 5rem;
+    padding: 0;
+}
+.follow-suggestion .profile-info {
+    color: var(--light-white-color-2);
+    line-height: 1.3;
+}
+.follow-suggestion .profile-name {
+    font-weight: 500;
+}
+.follow-suggestion .profile-username {
+    color: var(--grey-color);
+}
+.follow-suggestion .follow-btn {
+    border-radius: 2rem;
+    height: fit-content;
+}

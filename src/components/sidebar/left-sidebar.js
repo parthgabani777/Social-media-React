@@ -1,0 +1,77 @@
+import "./left-sidebar.css";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { signout } from "../../slices/authSlice";
+
+export function LeftSidebar() {
+    const { isAuthorized, token } = useSelector((state) => state.authReducer);
+    const navigation = useNavigate();
+    const dispatch = useDispatch();
+
+    const signoutClickHandler = () => {
+        dispatch(signout());
+    };
+
+    const navItems = [
+        { url: "/", name: "Home", icon: "fa-home" },
+        { url: "/explore", name: "Explore", icon: "fa-compass" },
+        { url: "/profile", name: "Profile", icon: "fa-user-circle" },
+        { url: "/setting", name: "Setting", icon: "fa-cog" },
+    ];
+
+    return (
+        <aside className="sidebar text-s">
+            <Link to="/" className="sidebar-logo">
+                Socialize
+            </Link>
+
+            {navItems.map(({ url, name, icon }) => (
+                <NavLink
+                    to={url}
+                    activeclassname="active"
+                    className="btn"
+                    key={name}
+                >
+                    <i className={`fas ${icon}`}></i>
+                    {name}
+                </NavLink>
+            ))}
+            <button className="btn btn-primary br-2 create-post-btn">
+                <i className="fas fa-plus-circle"></i>
+                Create Post
+            </button>
+
+            <div className="sidebar-footer">
+                {isAuthorized ? (
+                    <div>
+                        <div className="sidebar-profile">
+                            <Link to="/profile" className="profile-picture">
+                                <i className="fas fa-user-circle"></i>
+                            </Link>
+                            <div className="sidebar-profile-info">
+                                <p className="sidebar-profile-name">
+                                    Parth Gabani
+                                </p>
+                                <p className="sidebar-profile-username">
+                                    @parthgabani
+                                </p>
+                            </div>
+                        </div>
+                        <button
+                            className="btn auth-btn text-s"
+                            onClick={signoutClickHandler}
+                        >
+                            Signout
+                        </button>
+                    </div>
+                ) : (
+                    <Link to="/login" className="btn auth-btn">
+                        Login
+                    </Link>
+                )}
+            </div>
+        </aside>
+    );
+}
