@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Login, Signup } from "./index";
+import { Login, Signup, Profile, Setting } from "./index";
 import { RequiresAuth } from "./RequiresAuth";
 import { useSelector } from "react-redux";
 
@@ -15,6 +15,22 @@ function PageRoutes() {
                 element={
                     <RequiresAuth>
                         <></>
+                    </RequiresAuth>
+                }
+            />
+            <Route
+                path="/profile"
+                element={
+                    <RequiresAuth>
+                        <Profile />
+                    </RequiresAuth>
+                }
+            />
+            <Route
+                path="/setting"
+                element={
+                    <RequiresAuth>
+                        <Setting />
                     </RequiresAuth>
                 }
             />
