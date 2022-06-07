@@ -29,7 +29,6 @@
 }
 .sidebar a:hover {
     background: var(--primary-color);
-    /* color: var(--white-color); */
     cursor: pointer;
 }
 .sidebar a.active {
