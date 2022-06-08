@@ -161,7 +161,7 @@ export const postSlice = createSlice({
         },
 
         [addComment.pending]: (state) => {
-            state.isLoading = true;
+            //state.isLoading = true;
         },
         [addComment.fulfilled]: (state, { payload }) => {
             state.isLoading = false;

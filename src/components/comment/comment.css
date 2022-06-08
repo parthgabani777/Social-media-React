@@ -1,0 +1,28 @@
+.comment-modal {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid var(--light-black-color);
+}
+
+.comment-profile-picture {
+    font-size: 5rem;
+    height: 100%;
+    align-self: flex-start;
+}
+
+.comment-info {
+    width: 100%;
+}
+.comment-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.comment-text {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
