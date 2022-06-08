@@ -1,0 +1,59 @@
+.setting {
+    margin: auto;
+}
+
+.setting .profile-setting {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 4rem 0;
+}
+
+.setting .inner-container {
+    position: relative;
+    width: 125px;
+    height: 125px;
+    font-size: 125px;
+}
+
+.setting .inner-container > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.setting .profile-picture-edit-icon {
+    font-size: 2rem;
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    padding: 1rem;
+    border-radius: 50%;
+    background: var(--light-black-color);
+}
+.setting .profile-picture-edit-icon:hover {
+    cursor: pointer;
+    background-color: var(--light-black-color-2);
+}
+.setting #profile-picture-input {
+    display: none;
+}
+
+.setting .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.setting .profile-setting input,
+.setting .profile-setting textarea {
+    padding: 1rem 1rem;
+    font-size: 1.6rem;
+    background-color: var(--black-color);
+    color: var(--light-white-color);
+    border: 1px solid var(--light-white-color);
+    border-radius: 1rem;
+}
+
+.setting .profile-save {
+    width: 100%;
+}

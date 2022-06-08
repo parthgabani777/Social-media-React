@@ -1,0 +1,104 @@
+.post-modal {
+    display: flex;
+    gap: 1rem;
+    box-shadow: 0 0 3px var(--white-color);
+    padding: 1rem;
+    position: relative;
+}
+
+.post-modal .options-container {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.6rem;
+    padding: 1.5rem;
+    box-sizing: content-box;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    z-index: 2;
+}
+.post-modal .options-container:hover {
+    background-color: var(--light-black-color);
+    cursor: pointer;
+}
+.post-modal .option-icon {
+    position: relative;
+}
+
+.post-modal .option-list {
+    background: var(--black-color);
+    position: absolute;
+    top: 100%;
+}
+
+.post-modal .option {
+    padding: 1rem 2rem;
+}
+
+.post-modal .create-date {
+    color: var(--light-text-color);
+}
+
+.post-profile-picture img,
+.post-profile-picture i {
+    font-size: 5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.post-info {
+    width: 100%;
+}
+.post-profile-username:hover {
+    text-decoration: underline;
+}
+
+.post-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0 1rem;
+}
+.post-text {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.post-text:hover {
+    background: var(--light-black-color-2);
+}
+
+.post-icons {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+    font-size: 2rem;
+    padding-top: 0.5rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--light-black-color);
+    padding-right: 2rem;
+}
+.post-icons > * {
+    padding: 1rem;
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.post-icons > *:hover {
+    cursor: pointer;
+    background: var(--light-black-color);
+    border-radius: 50%;
+}
+.post-likes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}

@@ -7,6 +7,7 @@ import { signout } from "../../slices/authSlice";
 
 export function LeftSidebar() {
     const { isAuthorized, token } = useSelector((state) => state.authReducer);
+    const { loggedInUser } = useSelector((state) => state.userReducer);
     const navigation = useNavigate();
     const dispatch = useDispatch();
 
@@ -52,10 +53,11 @@ export function LeftSidebar() {
                             </Link>
                             <div className="sidebar-profile-info">
                                 <p className="sidebar-profile-name">
-                                    Parth Gabani
+                                    {loggedInUser.firstName}{" "}
+                                    {loggedInUser.lastName}
                                 </p>
                                 <p className="sidebar-profile-username">
-                                    @parthgabani
+                                    @{loggedInUser.username}
                                 </p>
                             </div>
                         </div>
