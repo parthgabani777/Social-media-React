@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { signout } from "../../slices/authSlice";
+import { AddPostModal } from "../add-post-modal/add-post-modal";
+import { addPost } from "../../slices/postSlice";
 
 export function LeftSidebar() {
     const { isAuthorized, token } = useSelector((state) => state.authReducer);
@@ -22,6 +24,12 @@ export function LeftSidebar() {
         { url: "/setting", name: "Setting", icon: "fa-cog" },
     ];
 
+    // Add post modal toggler
+    const [showAddPostModal, setShowAddPostModal] = useState(false);
+    const showAddPostModalClickHandler = () => {
+        isAuthorized ? setShowAddPostModal(true) : navigation("/login");
+    };
+
     return (
         <aside className="sidebar text-s">
             <Link to="/" className="sidebar-logo">
@@ -39,10 +47,21 @@ export function LeftSidebar() {
                     {name}
                 </NavLink>
             ))}
-            <button className="btn btn-primary br-2 create-post-btn">
+            <button
+                className="btn btn-primary br-2 create-post-btn"
+                onClick={showAddPostModalClickHandler}
+            >
                 <i className="fas fa-plus-circle"></i>
                 Create Post
             </button>
+            <AddPostModal
+                show={showAddPostModal}
+                onClose={() => setShowAddPostModal(false)}
+                onSubmit={(postData) => {
+                    dispatch(addPost({ postData, token }));
+                    setShowAddPostModal(false);
+                }}
+            />
 
             <div className="sidebar-footer">
                 {isAuthorized ? (

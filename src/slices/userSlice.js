@@ -49,6 +49,22 @@ export const getUserPosts = createAsyncThunk(
     }
 );
 
+export const addBookmark = createAsyncThunk(
+    "posts/addBookmark",
+    async ({ postId, token }) => {
+        const bookmarks = await addBookmarkService(postId, token);
+        return bookmarks;
+    }
+);
+
+export const removeBookmark = createAsyncThunk(
+    "posts/removeBookmark",
+    async ({ postId, token }) => {
+        const bookmarks = await removeBookmarkService(postId, token);
+        return bookmarks;
+    }
+);
+
 export const userSlice = createSlice({
     name: "user",
     initialState,
@@ -64,6 +80,7 @@ export const userSlice = createSlice({
             state.allUser = payload;
         },
 
+        // edit user data
         [postUserData.pending]: (state) => {
             state.isLoading = true;
         },
@@ -75,10 +92,12 @@ export const userSlice = createSlice({
             state.isLoading = false;
         },
 
+        // get user post
         [getUserPosts.fulfilled]: (state, { payload }) => {
             state.userPosts = payload;
         },
 
+        // get user data
         [getUserData.pending]: (state) => {
             state.isLoading = true;
         },
@@ -89,6 +108,14 @@ export const userSlice = createSlice({
         },
         [getUserData.rejected]: (state) => {
             state.isLoading = false;
+        },
+
+        // add/remove Bookmark
+        [addBookmark.fulfilled]: (state, { payload }) => {
+            state.loggedInUser.bookmarks = payload;
+        },
+        [removeBookmark.fulfilled]: (state, { payload }) => {
+            state.loggedInUser.bookmarks = payload;
         },
     },
 });

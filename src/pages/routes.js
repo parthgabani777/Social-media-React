@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Login, Signup, Profile, Setting } from "./index";
+import { Login, Signup, Profile, Setting, Home } from "./index";
 import { RequiresAuth } from "./RequiresAuth";
 import { useSelector } from "react-redux";
 
@@ -14,7 +14,15 @@ function PageRoutes() {
                 path="/"
                 element={
                     <RequiresAuth>
-                        <></>
+                        <Home />
+                    </RequiresAuth>
+                }
+            />
+            <Route
+                path="/explore"
+                element={
+                    <RequiresAuth>
+                        <Home />
                     </RequiresAuth>
                 }
             />

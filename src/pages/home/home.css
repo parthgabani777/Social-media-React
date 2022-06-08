@@ -1,0 +1,28 @@
+.home {
+    margin: auto;
+}
+.post-container {
+    display: flex;
+    flex-direction: column;
+    color: var(--light-white-color);
+    gap: 3rem;
+}
+.chips-container {
+    display: flex;
+    gap: 1rem;
+}
+.chips-container li {
+    list-style: none;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+}
+.chips-container li:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.chips-container li.active {
+    background-color: var(--white-color);
+    color: var(--black-color);
+}

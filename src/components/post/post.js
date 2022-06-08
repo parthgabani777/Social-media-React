@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./post.css";
-import { useState } from "react";
-
+import {
+    deletePost,
+    dislikePost,
+    editPost,
+    likePost,
+} from "../../slices/postSlice";
+import { addBookmark, removeBookmark } from "../../slices/userSlice";
+import { AddPostModal } from "../add-post-modal/add-post-modal";
 
 function Post({ post }) {
     const dispatch = useDispatch();
@@ -24,10 +31,37 @@ function Post({ post }) {
     // Post belongs to logged in user
     const isLoggedInUserPost = post.userId === userId;
 
+    // Liked post features
+    const isPostLiked = likedBy?.some((user) => user._id === userId);
+    const likeClickHandler = () => {
+        dispatch(likePost({ postId, token }));
+    };
+    const dislikeClickHandler = () => {
+        dispatch(dislikePost({ postId, token }));
+    };
+
+    // Bookmark post features
+    const isPostBookmarked = bookmarks?.some((post) => post._id === postId);
+    const addBookmarkClickHandler = () => {
+        dispatch(addBookmark({ postId, token }));
+    };
+    const removeBookmarkClickHandler = () => {
+        dispatch(removeBookmark({ postId, token }));
+    };
+
     // Submenu to edit/delete post
     const [showSubMenu, setShowSubMenu] = useState(false);
     const toggleShowSubMenu = () => {
         setShowSubMenu((showSubMenu) => !showSubMenu);
+    };
+
+    // edit/delete post modal
+    const [showAddPostModal, setShowAddPostModal] = useState(false);
+    const editPostClickHandler = () => {
+        setShowAddPostModal(true);
+    };
+    const deletePostClickHandler = () => {
+        dispatch(deletePost({ postId, token }));
     };
 
     // post create date formatting
@@ -62,6 +96,16 @@ function Post({ post }) {
                 </div>
             )}
 
+            <AddPostModal
+                show={showAddPostModal}
+                onClose={() => setShowAddPostModal(false)}
+                onSubmit={(postData) => {
+                    dispatch(editPost({ postId, postData, token }));
+                    setShowAddPostModal(false);
+                }}
+                content={content}
+            />
+
             <Link to={`/user/${post.userId}`} className="post-profile-picture">
                 {picture ? (
                     <img
@@ -95,14 +139,36 @@ function Post({ post }) {
                 </Link>
 
                 <div className="post-icons text-m">
-                    <div className="post-likes">
-                        <i className="fas fa-heart"></i>
-                        <span className="text-s">{likeCount}</span>
-                    </div>
+                    {isPostLiked ? (
+                        <div
+                            className="post-likes"
+                            onClick={dislikeClickHandler}
+                        >
+                            <i className="fas fa-heart text-primary"></i>
+                            <span className="text-s">{likeCount}</span>
+                        </div>
+                    ) : (
+                        <div className="post-likes" onClick={likeClickHandler}>
+                            <i className="fas fa-heart"></i>
+                            <span className="text-s">{likeCount}</span>
+                        </div>
+                    )}
 
-                    <div className="post-bookmark">
-                        <i className="fas fa-bookmark"></i>
-                    </div>
+                    {isPostBookmarked ? (
+                        <div
+                            className="post-bookmark"
+                            onClick={removeBookmarkClickHandler}
+                        >
+                            <i className="fas fa-bookmark text-primary"></i>
+                        </div>
+                    ) : (
+                        <div
+                            className="post-bookmark"
+                            onClick={addBookmarkClickHandler}
+                        >
+                            <i className="fas fa-bookmark"></i>
+                        </div>
+                    )}
 
                     <Link to={`/post/${postId}`} className="post-comments">
                         <i className="fas fa-comment-alt"></i>
