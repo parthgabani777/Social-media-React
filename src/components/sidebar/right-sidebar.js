@@ -28,9 +28,9 @@ export function RightSidebar() {
 
     const filteredUsers = allUser?.filter(
         (currentUser) =>
-            loggedInUser._id != currentUser._id &&
+            loggedInUser._id !== currentUser._id &&
             !loggedInUser.following.some(
-                (user1) => user1._id == currentUser._id
+                (user1) => user1._id === currentUser._id
             )
     );
 
