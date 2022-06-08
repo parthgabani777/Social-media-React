@@ -17,8 +17,6 @@ function SinglePost() {
 
     const [commentText, setCommentText] = useState();
 
-    console.log(currentPost);
-
     useEffect(() => {
         currentPost?._id === postId || dispatch(getPost(postId));
     }, []);
@@ -29,9 +27,9 @@ function SinglePost() {
         setCommentText("");
     };
 
-    return isLoading ? (
-        <CustomLoader />
-    ) : (
+    if (isLoading) return <CustomLoader />;
+
+    return (
         currentPost?._id === postId && (
             <div className="single-post">
                 <Post post={currentPost} />
