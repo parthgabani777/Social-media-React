@@ -1,69 +1,51 @@
 import axios from "axios";
 
-const getAllUsersService = async () => {
-    const {
-        data: { users },
-    } = await axios.get("/api/users");
-    return users;
+const getAllUsersService = () => {
+    return axios.get("/api/users");
 };
 
-const getUserService = async (userId) => {
-    const {
-        data: { user },
-    } = await axios.get(`/api/users/${userId}`);
-    return user;
+const getUserService = (userId) => {
+    return axios.get(`/api/users/${userId}`);
 };
 
-const postUserDataService = async (userData, token) => {
-    const {
-        data: { user },
-    } = await axios.post(
+const postUserDataService = (userData, token) => {
+    return axios.post(
         "/api/users/edit",
         { userData },
         {
             headers: { authorization: token },
         }
     );
-    return user;
 };
 
-const getBookmarksService = async (token) => {
-    const {
-        data: { bookmarks },
-    } = await axios.get(
+const getBookmarksService = (token) => {
+    return axios.get(
         "/api/users/bookmark",
         {},
         {
             headers: { authorization: token },
         }
     );
-    return bookmarks;
 };
 
-const addBookmarkService = async (postId, token) => {
-    const {
-        data: { bookmarks },
-    } = await axios.post(
+const addBookmarkService = (postId, token) => {
+    return axios.post(
         `/api/users/bookmark/${postId}`,
         {},
         {
             headers: { authorization: token },
         }
     );
-    return bookmarks;
 };
 
-const removeBookmarkService = async (postId, token) => {
-    const {
-        data: { bookmarks },
-    } = await axios.post(
+const removeBookmarkService = (postId, token) => {
+    return axios.post(
         `/api/users/remove-bookmark/${postId}`,
         {},
         {
             headers: { authorization: token },
         }
     );
-    return bookmarks;
 };
 
 const followUserService = async (followUserId, token) => {

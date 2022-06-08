@@ -20,19 +20,28 @@ const initialState = {
 };
 
 export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
-    const posts = await getAllPostsService();
+    const response = await getAllPostsService();
+    const {
+        data: { posts },
+    } = response;
     return posts;
 });
 
 export const getPost = createAsyncThunk("posts/getPost", async (postId) => {
-    const post = await getPostService(postId);
+    const response = await getPostService(postId);
+    const {
+        data: { post },
+    } = response;
     return post;
 });
 
 export const addPost = createAsyncThunk(
     "posts/addPost",
     async ({ postData, token }) => {
-        const posts = await addPostService(postData, token);
+        const response = await addPostService(postData, token);
+        const {
+            data: { posts },
+        } = response;
         return posts;
     }
 );
@@ -40,7 +49,10 @@ export const addPost = createAsyncThunk(
 export const editPost = createAsyncThunk(
     "posts/editPost",
     async ({ postId, postData, token }) => {
-        const posts = await editPostService(postId, postData, token);
+        const response = await editPostService(postId, postData, token);
+        const {
+            data: { posts },
+        } = response;
         return posts;
     }
 );
@@ -48,7 +60,10 @@ export const editPost = createAsyncThunk(
 export const deletePost = createAsyncThunk(
     "posts/deletePost",
     async ({ postId, token }) => {
-        const posts = await deletePostService(postId, token);
+        const response = await deletePostService(postId, token);
+        const {
+            data: { posts },
+        } = response;
         return posts;
     }
 );
@@ -56,7 +71,10 @@ export const deletePost = createAsyncThunk(
 export const getComments = createAsyncThunk(
     "posts/getComments",
     async (postId) => {
-        const comments = await getCommentsService(postId);
+        const response = await getCommentsService(postId);
+        const {
+            data: { comments },
+        } = response;
         return comments;
     }
 );
@@ -64,7 +82,10 @@ export const getComments = createAsyncThunk(
 export const addComment = createAsyncThunk(
     "posts/addComment",
     async ({ commentData, postId, token }) => {
-        const comments = await addCommentService(commentData, postId, token);
+        const response = await addCommentService(commentData, postId, token);
+        const {
+            data: { comments },
+        } = response;
         return { postId, comments };
     }
 );
@@ -72,7 +93,10 @@ export const addComment = createAsyncThunk(
 export const likePost = createAsyncThunk(
     "posts/likePost",
     async ({ postId, token }) => {
-        const posts = await likePostService(postId, token);
+        const response = await likePostService(postId, token);
+        const {
+            data: { posts },
+        } = response;
         return { postId, posts };
     }
 );
@@ -80,7 +104,10 @@ export const likePost = createAsyncThunk(
 export const dislikePost = createAsyncThunk(
     "posts/dislikePost",
     async ({ postId, token }) => {
-        const posts = await dislikePostService(postId, token);
+        const response = await dislikePostService(postId, token);
+        const {
+            data: { posts },
+        } = response;
         return { postId, posts };
     }
 );
@@ -146,32 +173,17 @@ export const postSlice = createSlice({
             state.currentPost.comments = comments;
         },
 
-        [likePost.pending]: (state) => {
-            state.isLoading = true;
-        },
         [likePost.fulfilled]: (state, { payload }) => {
             const { postId, posts } = payload;
             state.posts = posts;
             const post = posts.find((post) => post._id === postId);
             state.currentPost = post;
-            state.isLoading = false;
-        },
-        [likePost.rejected]: (state) => {
-            state.isLoading = false;
-        },
-
-        [dislikePost.pending]: (state) => {
-            state.isLoading = true;
         },
         [dislikePost.fulfilled]: (state, { payload }) => {
             const { postId, posts } = payload;
             state.posts = posts;
             const post = posts.find((post) => post._id === postId);
             state.currentPost = post;
-            state.isLoading = false;
-        },
-        [dislikePost.rejected]: (state) => {
-            state.isLoading = false;
         },
     },
 });

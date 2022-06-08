@@ -22,8 +22,14 @@ const initialState = {
 export const getUserData = createAsyncThunk(
     "user/getUserData",
     async ({ userId }) => {
-        const user = await getUserService(userId);
-        const userPosts = await getUserPostsService(userId);
+        const userResponse = await getUserService(userId);
+        const {
+            data: { user },
+        } = userResponse;
+        const userPostsResponse = await getUserPostsService(userId);
+        const {
+            data: { posts: userPosts },
+        } = userPostsResponse;
         return { user, userPosts };
     }
 );
@@ -31,28 +37,40 @@ export const getUserData = createAsyncThunk(
 export const postUserData = createAsyncThunk(
     "user/postUserData",
     async ({ userData, token }) => {
-        const user = await postUserDataService(userData, token);
+        const response = await postUserDataService(userData, token);
+        const {
+            data: { user },
+        } = response;
         return user;
     }
 );
 
 export const getAllUsers = createAsyncThunk("user/getAllUsers", async () => {
-    const users = await getAllUsersService();
+    const response = await getAllUsersService();
+    const {
+        data: { users },
+    } = response;
     return users;
 });
 
 export const getUserPosts = createAsyncThunk(
     "user/getUserPosts",
     async ({ userId }) => {
-        const userPosts = await getUserPostsService(userId);
-        return userPosts;
+        const response = await getUserPostsService(userId);
+        const {
+            data: { posts },
+        } = response;
+        return posts;
     }
 );
 
 export const addBookmark = createAsyncThunk(
     "posts/addBookmark",
     async ({ postId, token }) => {
-        const bookmarks = await addBookmarkService(postId, token);
+        const response = await addBookmarkService(postId, token);
+        const {
+            data: { bookmarks },
+        } = response;
         return bookmarks;
     }
 );
@@ -60,7 +78,10 @@ export const addBookmark = createAsyncThunk(
 export const removeBookmark = createAsyncThunk(
     "posts/removeBookmark",
     async ({ postId, token }) => {
-        const bookmarks = await removeBookmarkService(postId, token);
+        const response = await removeBookmarkService(postId, token);
+        const {
+            data: { bookmarks },
+        } = response;
         return bookmarks;
     }
 );
