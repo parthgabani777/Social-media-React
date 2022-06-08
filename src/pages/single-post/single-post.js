@@ -18,7 +18,7 @@ function SinglePost() {
     const [commentText, setCommentText] = useState();
 
     useEffect(() => {
-        currentPost?._id === postId || dispatch(getPost(postId));
+        dispatch(getPost(postId));
     }, []);
 
     const addCommentClickHandler = () => {
