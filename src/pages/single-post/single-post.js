@@ -40,8 +40,7 @@ function SinglePost() {
                     </div>
                     <div className="input-textarea">
                         <textarea
-                            placeholder="Write Something Interesting...."
-                            rows="4"
+                            placeholder="Write Comments...."
                             onChange={(e) => setCommentText(e.target.value)}
                         />
                     </div>
