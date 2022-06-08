@@ -10,7 +10,8 @@ const initialState = {
 export const login = createAsyncThunk(
     "auth/login",
     async ({ loginCredentials }) => {
-        const auth = await loginUserService(loginCredentials);
+        const response = await loginUserService(loginCredentials);
+        const { data: auth } = response;
         return auth;
     }
 );
@@ -18,7 +19,8 @@ export const login = createAsyncThunk(
 export const signup = createAsyncThunk(
     "auth/signup",
     async ({ signupCredentials }) => {
-        const auth = await signupUserService(signupCredentials);
+        const response = await signupUserService(signupCredentials);
+        const { data: auth } = response;
         return auth;
     }
 );

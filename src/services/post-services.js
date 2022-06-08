@@ -1,89 +1,61 @@
 import axios from "axios";
 
-const getAllPostsService = async () => {
-    const {
-        data: { posts },
-    } = await axios.get("/api/posts");
-
-    return posts;
+const getAllPostsService = () => {
+    return axios.get("/api/posts");
 };
 
-const getPostService = async (postId) => {
-    const {
-        data: { post },
-    } = await axios.get(`/api/posts/${postId}`);
-
-    return post;
+const getPostService = (postId) => {
+    return axios.get(`/api/posts/${postId}`);
 };
 
-const getUserPostsService = async (userId) => {
-    const {
-        data: { posts },
-    } = await axios.get(`/api/posts/user/${userId}`);
-
-    return posts;
+const getUserPostsService = (userId) => {
+    return axios.get(`/api/posts/user/${userId}`);
 };
 
-const addPostService = async (postData, token) => {
-    const {
-        data: { posts },
-    } = await axios.post(
+const addPostService = (postData, token) => {
+    return axios.post(
         "/api/posts",
         { postData },
         {
             headers: { authorization: token },
         }
     );
-
-    return posts;
 };
 
-const deletePostService = async (postId, token) => {
-    const {
-        data: { posts },
-    } = await axios.delete(`/api/posts/${postId}`, {
+const deletePostService = (postId, token) => {
+    return axios.delete(`/api/posts/${postId}`, {
         headers: { authorization: token },
     });
-    return posts;
 };
 
-const editPostService = async (postId, postData, token) => {
-    const {
-        data: { posts },
-    } = await axios.post(
+const editPostService = (postId, postData, token) => {
+    return axios.post(
         `/api/posts/edit/${postId}`,
         { postData },
         {
             headers: { authorization: token },
         }
     );
-    return posts;
 };
 
-const likePostService = async (postId, token) => {
-    const {
-        data: { posts },
-    } = await axios.post(
+const likePostService = (postId, token) => {
+    return axios.post(
         `/api/posts/like/${postId}`,
         {},
         {
             headers: { authorization: token },
         }
     );
-    return posts;
 };
 
-const dislikePostService = async (postId, token) => {
-    const {
-        data: { posts },
-    } = await axios.post(
+const dislikePostService = (postId, token) => {
+    return axios.post(
         `/api/posts/dislike/${postId}`,
         {},
         {
             headers: { authorization: token },
         }
     );
-    return posts;
 };
 
 export {
