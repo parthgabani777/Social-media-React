@@ -1,5 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import { Login, Signup, Profile, Setting, Home } from "./index";
+import {
+    Login,
+    Signup,
+    Profile,
+    Setting,
+    Home,
+    SinglePost,
+    SingleUser,
+} from "./index";
 import { RequiresAuth } from "./RequiresAuth";
 import { useSelector } from "react-redux";
 
@@ -39,6 +47,22 @@ function PageRoutes() {
                 element={
                     <RequiresAuth>
                         <Setting />
+                    </RequiresAuth>
+                }
+            />
+            <Route
+                path="/post/:postId"
+                element={
+                    <RequiresAuth>
+                        <SinglePost />
+                    </RequiresAuth>
+                }
+            />
+            <Route
+                path="/user/:userId"
+                element={
+                    <RequiresAuth>
+                        <SingleUser />
                     </RequiresAuth>
                 }
             />

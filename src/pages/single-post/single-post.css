@@ -1,0 +1,37 @@
+.single-post {
+    margin: auto;
+    border: 1px solid var(--light-black-color);
+}
+
+.comment-container {
+    display: flex;
+    flex-direction: column;
+    color: var(--light-white-color);
+}
+
+.single-post .post-modal {
+    box-shadow: none;
+    border-bottom: 1px solid var(--light-black-color);
+}
+
+.add-comment {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--light-black-color);
+}
+.add-comment-profile-picture {
+    font-size: 5rem;
+}
+.add-comment .input-textarea {
+    flex-grow: 1;
+}
+.add-comment .input-textarea textarea {
+    background-color: var(--black-color);
+    color: var(--light-white-color);
+    padding: 1.5rem 1rem;
+    border-radius: 0.7rem;
+    font-size: 1.6rem;
+    resize: none;
+}

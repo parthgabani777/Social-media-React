@@ -65,7 +65,7 @@ export const getUserPosts = createAsyncThunk(
 );
 
 export const addBookmark = createAsyncThunk(
-    "posts/addBookmark",
+    "user/addBookmark",
     async ({ postId, token }) => {
         const response = await addBookmarkService(postId, token);
         const {
@@ -76,13 +76,46 @@ export const addBookmark = createAsyncThunk(
 );
 
 export const removeBookmark = createAsyncThunk(
-    "posts/removeBookmark",
+    "user/removeBookmark",
     async ({ postId, token }) => {
         const response = await removeBookmarkService(postId, token);
         const {
             data: { bookmarks },
         } = response;
         return bookmarks;
+    }
+);
+
+export const followUser = createAsyncThunk(
+    "user/followUser",
+    async ({ followUserId, token }) => {
+        const followUserResponse = await followUserService(followUserId, token);
+        const {
+            data: { user, followUser },
+        } = followUserResponse;
+        const allUserResonse = await getAllUsersService();
+        const {
+            data: { users },
+        } = allUserResonse;
+        return { user, followUser, allUser: users };
+    }
+);
+
+export const unfollowUser = createAsyncThunk(
+    "user/unfollowUser",
+    async ({ followUserId, token }) => {
+        const unfollowUserResponse = await unfollowUserService(
+            followUserId,
+            token
+        );
+        const {
+            data: { user, followUser },
+        } = unfollowUserResponse;
+        const allUserResonse = await getAllUsersService();
+        const {
+            data: { users },
+        } = allUserResonse;
+        return { user, followUser, allUser: users };
     }
 );
 
@@ -137,6 +170,18 @@ export const userSlice = createSlice({
         },
         [removeBookmark.fulfilled]: (state, { payload }) => {
             state.loggedInUser.bookmarks = payload;
+        },
+
+        // follow/unfollow user
+        [followUser.fulfilled]: (state, { payload }) => {
+            state.userData = payload.followUser;
+            state.loggedInUser = payload.user;
+            state.allUser = payload.allUser;
+        },
+        [unfollowUser.fulfilled]: (state, { payload }) => {
+            state.userData = payload.followUser;
+            state.loggedInUser = payload.user;
+            state.allUser = payload.allUser;
         },
     },
 });

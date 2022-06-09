@@ -160,11 +160,7 @@ export const postSlice = createSlice({
             state.posts = payload;
         },
 
-        [addComment.pending]: (state) => {
-            state.isLoading = true;
-        },
         [addComment.fulfilled]: (state, { payload }) => {
-            state.isLoading = false;
             const { comments, postId } = payload;
             const postIndex = state.posts.findIndex(
                 (post) => post._id === postId
