@@ -6,6 +6,7 @@ import { CustomLoader } from "../../components/customLoader/customloader";
 import { useParams, useNavigate } from "react-router-dom";
 import { followUser, getUserData, unfollowUser } from "../../slices/userSlice";
 import { getUserPosts } from "../../slices/userSlice";
+import { toast } from "react-toastify";
 
 export function SingleUser() {
     const { userId } = useParams();
@@ -24,8 +25,14 @@ export function SingleUser() {
     };
 
     useEffect(() => {
-        if (loggedInUser?._id == userId) navigation("/profile");
-        dispatch(getUserData({ userId }));
+        if (loggedInUser?._id === parseInt(userId)) navigation("/profile");
+        (async () => {
+            try {
+                await dispatch(getUserData({ userId })).unwrap();
+            } catch (error) {
+                toast.error("User does not exist.");
+            }
+        })();
     }, []);
 
     useEffect(() => {
@@ -44,7 +51,7 @@ export function SingleUser() {
                 followUser({ followUserId: userId, token })
             ).unwrap();
         } catch (error) {
-            console.log(error);
+            toast.error(error);
         }
     };
 
@@ -54,7 +61,7 @@ export function SingleUser() {
                 unfollowUser({ followUserId: userId, token })
             ).unwrap();
         } catch (error) {
-            console.log(error);
+            toast.error(error);
         }
     };
 

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { signout } from "../../slices/authSlice";
 import { AddPostModal } from "../add-post-modal/add-post-modal";
 import { addPost } from "../../slices/postSlice";
+import { toast } from "react-toastify";
 
 export function LeftSidebar() {
     const { isAuthorized, token } = useSelector((state) => state.authReducer);
@@ -57,9 +58,14 @@ export function LeftSidebar() {
             <AddPostModal
                 show={showAddPostModal}
                 onClose={() => setShowAddPostModal(false)}
-                onSubmit={(postData) => {
-                    dispatch(addPost({ postData, token }));
-                    setShowAddPostModal(false);
+                onSubmit={async (postData) => {
+                    try {
+                        await dispatch(addPost({ postData, token })).unwrap();
+                        setShowAddPostModal(false);
+                        toast.success("Post Created");
+                    } catch (error) {
+                        toast.error("Post can't be created");
+                    }
                 }}
             />
 

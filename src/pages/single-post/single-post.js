@@ -6,6 +6,7 @@ import { CustomLoader } from "../../components/customLoader/customloader";
 import { Post } from "../../components/post/post";
 import { addComment, getPost } from "../../slices/postSlice";
 import { Comment } from "../../components/comment/comment";
+import { toast } from "react-toastify";
 
 function SinglePost() {
     const { postId } = useParams();
@@ -15,16 +16,27 @@ function SinglePost() {
     );
     const { token } = useSelector((state) => state.authReducer);
 
-    const [commentText, setCommentText] = useState();
+    const [commentText, setCommentText] = useState("");
 
     useEffect(() => {
-        dispatch(getPost(postId));
+        (async () => {
+            try {
+                await dispatch(getPost(postId)).unwrap();
+            } catch (error) {
+                toast.error("Post does not exist.");
+            }
+        })();
     }, []);
 
-    const addCommentClickHandler = () => {
-        const commentData = { text: commentText };
-        dispatch(addComment({ commentData, postId, token }));
-        setCommentText("");
+    const addCommentClickHandler = async () => {
+        try {
+            const commentData = { text: commentText };
+            await dispatch(addComment({ commentData, postId, token })).unwrap();
+            setCommentText("");
+            toast.success("Comment added.");
+        } catch (error) {
+            toast.error("Comment can't be added.");
+        }
     };
 
     if (isLoading) return <CustomLoader />;
@@ -41,6 +53,7 @@ function SinglePost() {
                     <div className="input-textarea">
                         <textarea
                             placeholder="Write Comments...."
+                            value={commentText}
                             onChange={(e) => setCommentText(e.target.value)}
                         />
                     </div>

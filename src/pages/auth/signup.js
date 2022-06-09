@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { signup } from "../../slices/authSlice";
 import { CustomLoader } from "../../components/customLoader/customloader";
+import { toast } from "react-toastify";
 
 function Signup() {
     const { isLoading } = useSelector((state) => state.authReducer);
@@ -35,13 +36,14 @@ function Signup() {
         try {
             if (
                 signupCredentials.password !== signupCredentials.confirmPassword
-            )
+            ) {
+                toast.error("Password and Confirm Password should be same.");
                 return;
-
+            }
             await dispatch(signup({ signupCredentials })).unwrap();
             navigation("/");
         } catch (error) {
-            console.log(error);
+            toast.error(error);
         }
     };
 

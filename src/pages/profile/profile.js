@@ -8,8 +8,7 @@ import { getUserPosts } from "../../slices/userSlice";
 import { getAllPosts } from "../../slices/postSlice";
 
 function Profile() {
-    const { isLoading } = useSelector((state) => state.authReducer);
-    const { loggedInUser, userPosts } = useSelector(
+    const { isLoading, loggedInUser, userPosts } = useSelector(
         (state) => state.userReducer
     );
     const { _id: userId } = loggedInUser;

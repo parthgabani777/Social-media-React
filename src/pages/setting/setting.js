@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import { CustomLoader } from "../../components/customLoader/customloader";
 import { postUserData } from "../../slices/userSlice";
 import "./setting.css";
@@ -32,9 +33,10 @@ function Setting() {
         try {
             e.preventDefault();
             dispatch(postUserData({ userData, token }));
+            toast.success("Profile updated");
             navigation("/profile");
         } catch (error) {
-            console.log(error);
+            toast.error("Can't update profile.");
         }
     };
 

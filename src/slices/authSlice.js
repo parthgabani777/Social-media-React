@@ -5,23 +5,44 @@ const initialState = {
     isAuthorized: false,
     token: null,
     isLoading: false,
+    error: "",
 };
 
 export const login = createAsyncThunk(
     "auth/login",
-    async ({ loginCredentials }) => {
-        const response = await loginUserService(loginCredentials);
-        const { data: auth } = response;
-        return auth;
+    async ({ loginCredentials }, { rejectWithValue }) => {
+        try {
+            const response = await loginUserService(loginCredentials);
+            const { data: auth } = response;
+            return auth;
+        } catch (error) {
+            switch (error.response.status) {
+                case 401:
+                    return rejectWithValue("Wrong password.");
+                case 404:
+                    return rejectWithValue("Username not found.");
+                default:
+                    return rejectWithValue("Login failed.");
+            }
+        }
     }
 );
 
 export const signup = createAsyncThunk(
     "auth/signup",
-    async ({ signupCredentials }) => {
-        const response = await signupUserService(signupCredentials);
-        const { data: auth } = response;
-        return auth;
+    async ({ signupCredentials }, { rejectWithValue }) => {
+        try {
+            const response = await signupUserService(signupCredentials);
+            const { data: auth } = response;
+            return auth;
+        } catch (error) {
+            switch (error.response.status) {
+                case 422:
+                    return rejectWithValue("Username alrady exists.");
+                default:
+                    return rejectWithValue("Signup failed.");
+            }
+        }
     }
 );
 
@@ -45,8 +66,9 @@ export const authSlice = createSlice({
             state.token = encodedToken;
             state.isLoading = false;
         },
-        [login.rejected]: (state) => {
+        [login.rejected]: (state, { payload }) => {
             state.isLoading = false;
+            state.error = payload;
         },
 
         [signup.pending]: (state) => {
@@ -58,8 +80,9 @@ export const authSlice = createSlice({
             state.token = encodedToken;
             state.isLoading = false;
         },
-        [signup.rejected]: (state) => {
+        [signup.rejected]: (state, { payload }) => {
             state.isLoading = false;
+            state.error = payload;
         },
     },
 });

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { followUser, getAllUsers } from "../../slices/userSlice";
+import { toast } from "react-toastify";
 
 export function RightSidebar() {
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ export function RightSidebar() {
                 followUser({ followUserId: userId, token })
             ).unwrap();
         } catch (error) {
-            console.log(error);
+            toast.error(error);
         }
     };
 

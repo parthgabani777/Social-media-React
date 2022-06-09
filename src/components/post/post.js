@@ -10,6 +10,7 @@ import {
 } from "../../slices/postSlice";
 import { addBookmark, removeBookmark } from "../../slices/userSlice";
 import { AddPostModal } from "../add-post-modal/add-post-modal";
+import { toast } from "react-toastify";
 
 function Post({ post }) {
     const dispatch = useDispatch();
@@ -60,8 +61,13 @@ function Post({ post }) {
     const editPostClickHandler = () => {
         setShowAddPostModal(true);
     };
-    const deletePostClickHandler = () => {
-        dispatch(deletePost({ postId, token }));
+    const deletePostClickHandler = async () => {
+        try {
+            await dispatch(deletePost({ postId, token })).unwrap();
+            toast.success("Post deleted");
+        } catch (error) {
+            toast.error("Post can't be deleted");
+        }
     };
 
     // post create date formatting
@@ -99,9 +105,14 @@ function Post({ post }) {
             <AddPostModal
                 show={showAddPostModal}
                 onClose={() => setShowAddPostModal(false)}
-                onSubmit={(postData) => {
-                    dispatch(editPost({ postId, postData, token }));
-                    setShowAddPostModal(false);
+                onSubmit={async (postData) => {
+                    try {
+                        dispatch(editPost({ postId, postData, token }));
+                        setShowAddPostModal(false);
+                        toast.success("Post updated");
+                    } catch (error) {
+                        toast.error("Post can't be updated");
+                    }
                 }}
                 content={content}
             />

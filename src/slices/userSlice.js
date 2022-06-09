@@ -17,6 +17,7 @@ const initialState = {
     userData: null,
     userPosts: null,
     isLoading: false,
+    error: "",
 };
 
 export const getUserData = createAsyncThunk(
@@ -88,34 +89,51 @@ export const removeBookmark = createAsyncThunk(
 
 export const followUser = createAsyncThunk(
     "user/followUser",
-    async ({ followUserId, token }) => {
-        const followUserResponse = await followUserService(followUserId, token);
-        const {
-            data: { user, followUser },
-        } = followUserResponse;
-        const allUserResonse = await getAllUsersService();
-        const {
-            data: { users },
-        } = allUserResonse;
-        return { user, followUser, allUser: users };
+    async ({ followUserId, token }, { rejectWithValue }) => {
+        try {
+            const followUserResponse = await followUserService(
+                followUserId,
+                token
+            );
+            const {
+                data: { user, followUser },
+            } = followUserResponse;
+            const allUserResonse = await getAllUsersService();
+            const {
+                data: { users },
+            } = allUserResonse;
+            return { user, followUser, allUser: users };
+        } catch (error) {
+            if (error.response.status === 400) {
+                return rejectWithValue("User Already following");
+            }
+            return rejectWithValue("Server error.");
+        }
     }
 );
 
 export const unfollowUser = createAsyncThunk(
     "user/unfollowUser",
     async ({ followUserId, token }) => {
-        const unfollowUserResponse = await unfollowUserService(
-            followUserId,
-            token
-        );
-        const {
-            data: { user, followUser },
-        } = unfollowUserResponse;
-        const allUserResonse = await getAllUsersService();
-        const {
-            data: { users },
-        } = allUserResonse;
-        return { user, followUser, allUser: users };
+        try {
+            const unfollowUserResponse = await unfollowUserService(
+                followUserId,
+                token
+            );
+            const {
+                data: { user, followUser },
+            } = unfollowUserResponse;
+            const allUserResonse = await getAllUsersService();
+            const {
+                data: { users },
+            } = allUserResonse;
+            return { user, followUser, allUser: users };
+        } catch (error) {
+            if (error.response.status === 400) {
+                return rejectWithValue("User already Not following");
+            }
+            return rejectWithValue("Server error.");
+        }
     }
 );
 
@@ -147,8 +165,15 @@ export const userSlice = createSlice({
         },
 
         // get user post
+        [getUserPosts.pending]: (state) => {
+            state.isLoading = true;
+        },
         [getUserPosts.fulfilled]: (state, { payload }) => {
             state.userPosts = payload;
+            state.isLoading = false;
+        },
+        [getUserData.rejected]: (state) => {
+            state.isLoading = false;
         },
 
         // get user data
@@ -178,10 +203,16 @@ export const userSlice = createSlice({
             state.loggedInUser = payload.user;
             state.allUser = payload.allUser;
         },
+        [followUser.rejected]: (state, { payload }) => {
+            state.error = payload;
+        },
         [unfollowUser.fulfilled]: (state, { payload }) => {
             state.userData = payload.followUser;
             state.loggedInUser = payload.user;
             state.allUser = payload.allUser;
+        },
+        [unfollowUser.rejected]: (state, { payload }) => {
+            state.error = payload;
         },
     },
 });

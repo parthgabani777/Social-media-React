@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { login } from "../../slices/authSlice";
 import { CustomLoader } from "../../components/customLoader/customloader";
+import { toast } from "react-toastify";
 
 function Login() {
-    const { isLoading } = useSelector((state) => state.authReducer);
+    const { isLoading, error } = useSelector((state) => state.authReducer);
     const dispatch = useDispatch();
     const navigation = useNavigate();
     const location = useLocation();
@@ -35,7 +36,7 @@ function Login() {
             await dispatch(login({ loginCredentials })).unwrap();
             navigation(from);
         } catch (error) {
-            console.log(error);
+            toast.error(error);
         }
     };
 
