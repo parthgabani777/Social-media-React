@@ -58,6 +58,10 @@
 .sidebar-footer .profile-picture:hover {
     background: none;
 }
+.sidebar-footer .profile-picture img {
+    width: 50px;
+    height: 50px;
+}
 .sidebar-footer .profile-picture i {
     font-size: 5rem;
     padding: 0;

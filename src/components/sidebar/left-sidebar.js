@@ -74,7 +74,15 @@ export function LeftSidebar() {
                     <div>
                         <div className="sidebar-profile">
                             <Link to="/profile" className="profile-picture">
-                                <i className="fas fa-user-circle"></i>
+                                {loggedInUser.picture ? (
+                                    <img
+                                        src={loggedInUser.picture}
+                                        alt="profile picture"
+                                        className="profile-picture"
+                                    />
+                                ) : (
+                                    <i className="fas fa-user-circle"></i>
+                                )}
                             </Link>
                             <div className="sidebar-profile-info">
                                 <p className="sidebar-profile-name">
