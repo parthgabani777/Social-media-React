@@ -7,6 +7,7 @@ import {
     Home,
     SinglePost,
     SingleUser,
+    NotFound,
 } from "./index";
 import { RequiresAuth } from "./RequiresAuth";
 import { useSelector } from "react-redux";
@@ -18,6 +19,7 @@ function PageRoutes() {
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="*" element={<NotFound />} />
             <Route
                 path="/"
                 element={
