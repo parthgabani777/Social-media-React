@@ -70,7 +70,6 @@ export const getAllUserPostsHandler = function (schema, request) {
         });
         return new Response(200, {}, { posts });
     } catch (error) {
-        console.log(error);
         return new Response(
             500,
             {},

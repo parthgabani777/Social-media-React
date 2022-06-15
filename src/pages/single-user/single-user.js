@@ -73,7 +73,15 @@ export function SingleUser() {
         <div className="profile">
             <div className="profile-container">
                 <div className="profile-picture">
-                    <i className="fas fa-user-circle"></i>
+                    {userData.picture ? (
+                        <img
+                            src={userData.picture}
+                            alt="profile picture"
+                            className="profile-picture"
+                        />
+                    ) : (
+                        <i className="fas fa-user-circle"></i>
+                    )}
                     {isFollowing ? (
                         <button
                             onClick={unfollowUserClickHandler}
