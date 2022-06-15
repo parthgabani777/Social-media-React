@@ -47,7 +47,7 @@ function Home() {
 
     useEffect(() => {
         dispatch(getAllPosts());
-    }, []);
+    }, [postFilters]);
 
     if (isLoading) return <CustomLoader />;
 

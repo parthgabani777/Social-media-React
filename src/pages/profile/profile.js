@@ -15,7 +15,10 @@ function Profile() {
     const { posts } = useSelector((state) => state.postsReducer);
     const dispatch = useDispatch();
 
+    const [localLoader, setLocalLoader] = useState(true);
+
     useEffect(() => {
+        setLocalLoader(false);
         dispatch(getAllPosts());
     }, []);
 
@@ -80,7 +83,7 @@ function Profile() {
         }
     };
 
-    if (isLoading) return <CustomLoader />;
+    if (isLoading && localLoader) return <CustomLoader />;
 
     return (
         <div className="profile">

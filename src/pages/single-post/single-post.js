@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 function SinglePost() {
     const { postId } = useParams();
     const dispatch = useDispatch();
-    const { currentPost, isLoading } = useSelector(
+    const { currentPost, isLoading, posts } = useSelector(
         (state) => state.postsReducer
     );
     const { token } = useSelector((state) => state.authReducer);
@@ -26,7 +26,7 @@ function SinglePost() {
                 toast.error("Post does not exist.");
             }
         })();
-    }, []);
+    }, [posts]);
 
     const addCommentClickHandler = async () => {
         try {

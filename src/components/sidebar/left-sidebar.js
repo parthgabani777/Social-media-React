@@ -28,7 +28,11 @@ export function LeftSidebar() {
     // Add post modal toggler
     const [showAddPostModal, setShowAddPostModal] = useState(false);
     const showAddPostModalClickHandler = () => {
-        isAuthorized ? setShowAddPostModal(true) : navigation("/login");
+        if (isAuthorized) {
+            return setShowAddPostModal(true);
+        }
+        toast.error("You must be logged in to add a post");
+        navigation("/login");
     };
 
     return (
