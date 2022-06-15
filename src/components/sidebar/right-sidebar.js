@@ -132,47 +132,51 @@ export function RightSidebar() {
                     {filteredUsers.length === 0
                         ? "No user found."
                         : filteredUsers?.map(
-                              ({
-                                  _id,
-                                  username,
-                                  firstName,
-                                  lastName,
-                                  picture,
-                              }) => (
-                                  <div className="user" key={_id}>
-                                      <div className="user-info">
-                                          <Link
-                                              to={`/user/${_id}`}
-                                              className="user-picture"
-                                          >
-                                              {picture ? (
-                                                  <img
-                                                      src={picture}
-                                                      alt="profile picture"
-                                                      className="profile-picture"
-                                                  />
-                                              ) : (
-                                                  <i className="fas fa-user-circle"></i>
-                                              )}
-                                          </Link>
-                                          <div className="profile-info">
-                                              <p className="profile-name">{`${firstName} ${lastName}`}</p>
-                                              <p className="profile-username">
-                                                  @{username}
-                                              </p>
+                              (
+                                  {
+                                      _id,
+                                      username,
+                                      firstName,
+                                      lastName,
+                                      picture,
+                                  },
+                                  index
+                              ) =>
+                                  index < 5 && (
+                                      <div className="user" key={_id}>
+                                          <div className="user-info">
+                                              <Link
+                                                  to={`/user/${_id}`}
+                                                  className="user-picture"
+                                              >
+                                                  {picture ? (
+                                                      <img
+                                                          src={picture}
+                                                          alt="profile picture"
+                                                          className="profile-picture"
+                                                      />
+                                                  ) : (
+                                                      <i className="fas fa-user-circle"></i>
+                                                  )}
+                                              </Link>
+                                              <div className="profile-info">
+                                                  <p className="profile-name">{`${firstName} ${lastName}`}</p>
+                                                  <p className="profile-username">
+                                                      @{username}
+                                                  </p>
+                                              </div>
                                           </div>
-                                      </div>
 
-                                      <button
-                                          onClick={() =>
-                                              followUserClickHandler(_id)
-                                          }
-                                          className="btn btn-white follow-btn"
-                                      >
-                                          Follow
-                                      </button>
-                                  </div>
-                              )
+                                          <button
+                                              onClick={() =>
+                                                  followUserClickHandler(_id)
+                                              }
+                                              className="btn btn-white follow-btn"
+                                          >
+                                              Follow
+                                          </button>
+                                      </div>
+                                  )
                           )}
                 </div>
             </div>
