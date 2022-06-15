@@ -1,7 +1,7 @@
 import "./single-post.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { CustomLoader } from "../../components/customLoader/customloader";
 import { Post } from "../../components/post/post";
 import { addComment, getPost } from "../../slices/postSlice";
@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 function SinglePost() {
     const { postId } = useParams();
     const dispatch = useDispatch();
+    const navigation = useNavigate();
     const { currentPost, isLoading, posts } = useSelector(
         (state) => state.postsReducer
     );
@@ -23,7 +24,7 @@ function SinglePost() {
             try {
                 await dispatch(getPost(postId)).unwrap();
             } catch (error) {
-                toast.error("Post does not exist.");
+                navigation("/");
             }
         })();
     }, [posts]);
