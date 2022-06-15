@@ -31,9 +31,15 @@ export function RightSidebar() {
 
     // For filtering the products based on search query
     const SearchedUsers = allUser?.filter((user) => {
-        const result = user.username.toLowerCase().search(search.toLowerCase());
         const isCurrentUser = user._id === loggedInUser?._id;
-        return result !== 1 && !isCurrentUser ? true : false;
+        if (isCurrentUser) {
+            return false;
+        }
+
+        const isMatchingSearch = user.username
+            .toLowerCase()
+            .search(search.toLowerCase());
+        return isMatchingSearch === -1 ? false : true;
     });
 
     // For showing search results
