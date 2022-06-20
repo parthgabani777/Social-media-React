@@ -14,10 +14,13 @@ function Home() {
     const dispatch = useDispatch();
 
     const [postFilters, setPostFilters] = useState("latest");
-
     const changePostFilter = (e) => {
         setPostFilters(e.target.id);
     };
+
+    useEffect(() => {
+        dispatch(getAllPosts());
+    }, [postFilters]);
 
     const sortPosts = (posts) => {
         switch (postFilters) {
@@ -44,10 +47,6 @@ function Home() {
                       )
               )
             : sortPosts(posts);
-
-    useEffect(() => {
-        dispatch(getAllPosts());
-    }, [postFilters]);
 
     if (isLoading) return <CustomLoader />;
 

@@ -33,7 +33,7 @@ export function SingleUser() {
                 toast.error("User does not exist.");
             }
         })();
-    }, []);
+    }, [userId]);
 
     useEffect(() => {
         dispatch(getUserPosts({ userId }));
