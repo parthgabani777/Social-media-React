@@ -36,6 +36,18 @@ export const users = [
             "https://pbs.twimg.com/profile_images/1501178147420585987/5_2plEJW_400x400.jpg",
     },
     {
+        _id: 9,
+        firstName: "Akshay",
+        lastName: "Saini",
+        username: "akshaysaini",
+        password: "akshay123",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        picture:
+            "https://pbs.twimg.com/profile_images/1219645637324488705/XD94Q6D1_400x400.jpg",
+    },
+
+    {
         _id: 3,
         firstName: "Anastasie",
         lastName: "Jowers",

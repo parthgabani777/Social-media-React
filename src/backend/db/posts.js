@@ -9,42 +9,7 @@ import { formatDate } from "../utils/authUtils";
 export const posts = [
     {
         _id: uuid(),
-        content: "Hello, how going on?",
-        likes: {
-            likeCount: 0,
-            likedBy: [],
-            dislikedBy: [],
-        },
-        username: "adarshbalika",
-        userId: 1,
-        createdAt: formatDate(),
-        updatedAt: formatDate(),
-        comments: [
-            {
-                _id: uuid(),
-                username: "parthgabani",
-                text: "Interesting",
-                votes: {
-                    upvotedBy: [],
-                    downvotedBy: [],
-                },
-                createdAt: formatDate(),
-            },
-            {
-                _id: uuid(),
-                username: "adarshbalika",
-                text: "Wow!",
-                votes: {
-                    upvotedBy: [],
-                    downvotedBy: [],
-                },
-                createdAt: formatDate(),
-            },
-        ],
-    },
-    {
-        _id: uuid(),
-        content: "Very Good!!!",
+        content: "How's goind on?",
         likes: {
             likeCount: 0,
             likedBy: [],
@@ -56,7 +21,7 @@ export const posts = [
             {
                 _id: uuid(),
                 username: "adarshbalika",
-                text: "Interesting",
+                text: "All going good",
                 votes: {
                     upvotedBy: [],
                     downvotedBy: [],
@@ -66,7 +31,7 @@ export const posts = [
             {
                 _id: uuid(),
                 username: "parthgabani",
-                text: "Wow!",
+                text: "Nice!",
                 votes: {
                     upvotedBy: [],
                     downvotedBy: [],
@@ -168,5 +133,59 @@ export const posts = [
                 createdAt: formatDate(),
             },
         ],
+    },
+    {
+        _id: uuid(),
+        content: "You'll never be 100% prepared for that interview.",
+        likes: {
+            likeCount: 0,
+            likedBy: [],
+            dislikedBy: [],
+        },
+        username: "akshaysaini",
+        userId: 9,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        comments: [
+            {
+                _id: uuid(),
+                username: "parthgabani",
+                text: "Yes",
+                votes: {
+                    upvotedBy: [],
+                    downvotedBy: [],
+                },
+                createdAt: formatDate(),
+            },
+        ],
+    },
+    {
+        _id: uuid(),
+        content: "The easiest part of building a product is writing code.",
+        likes: {
+            likeCount: 0,
+            likedBy: [],
+            dislikedBy: [],
+        },
+        username: "akshaysaini",
+        userId: 9,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        comments: [],
+    },
+    {
+        _id: uuid(),
+        content:
+            "good companies with bad interviewers often lose great people;",
+        likes: {
+            likeCount: 0,
+            likedBy: [],
+            dislikedBy: [],
+        },
+        username: "akshaysaini",
+        userId: 9,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        comments: [],
     },
 ];
