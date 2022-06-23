@@ -26,3 +26,8 @@
     background-color: var(--white-color);
     color: var(--black-color);
 }
+.home .btn-explore-more {
+    display: flex;
+    width: fit-content;
+    margin: 2rem auto;
+}

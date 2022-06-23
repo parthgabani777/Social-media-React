@@ -1,5 +1,5 @@
 import "./right-sidebar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { followUser, getAllUsers } from "../../slices/userSlice";
@@ -8,6 +8,7 @@ import { useClickOutside } from "../../hooks/useClickOutside";
 
 export function RightSidebar() {
     const dispatch = useDispatch();
+    const navigation = useNavigate();
     const { isAuthorized, token } = useSelector((state) => state.authReducer);
     const { allUser, loggedInUser } = useSelector((state) => state.userReducer);
 
@@ -143,12 +144,15 @@ export function RightSidebar() {
                                   index
                               ) =>
                                   index < 5 && (
-                                      <div className="user" key={_id}>
+                                      <div
+                                          className="user"
+                                          key={_id}
+                                          onClick={() => {
+                                              navigation(`/user/${_id}`);
+                                          }}
+                                      >
                                           <div className="user-info">
-                                              <Link
-                                                  to={`/user/${_id}`}
-                                                  className="user-picture"
-                                              >
+                                              <div className="user-picture">
                                                   {picture ? (
                                                       <img
                                                           src={picture}
@@ -158,7 +162,7 @@ export function RightSidebar() {
                                                   ) : (
                                                       <i className="fas fa-user-circle"></i>
                                                   )}
-                                              </Link>
+                                              </div>
                                               <div className="profile-info">
                                                   <p className="profile-name">{`${firstName} ${lastName}`}</p>
                                                   <p className="profile-username">
@@ -168,9 +172,10 @@ export function RightSidebar() {
                                           </div>
 
                                           <button
-                                              onClick={() =>
-                                                  followUserClickHandler(_id)
-                                              }
+                                              onClick={(e) => {
+                                                  e.stopPropagation();
+                                                  followUserClickHandler(_id);
+                                              }}
                                               className="btn btn-white follow-btn"
                                           >
                                               Follow

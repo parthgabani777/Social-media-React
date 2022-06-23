@@ -40,6 +40,10 @@ function SinglePost() {
         }
     };
 
+    const commentSortByLatest = currentPost?.comments
+        .slice()
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
     if (isLoading) return <CustomLoader />;
 
     return (
@@ -67,7 +71,7 @@ function SinglePost() {
                 </div>
 
                 <div className="comment-container">
-                    {currentPost.comments.map((comment) => (
+                    {commentSortByLatest.map((comment) => (
                         <Comment comment={comment} key={comment._id} />
                     ))}
                 </div>

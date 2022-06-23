@@ -25,6 +25,17 @@ export const users = [
         updatedAt: formatDate(),
     },
     {
+        _id: 8,
+        firstName: "Tanay",
+        lastName: "Pratap",
+        username: "tanaypratap",
+        password: "tanay123",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        picture:
+            "https://pbs.twimg.com/profile_images/1501178147420585987/5_2plEJW_400x400.jpg",
+    },
+    {
         _id: 3,
         firstName: "Anastasie",
         lastName: "Jowers",
@@ -60,6 +71,7 @@ export const users = [
         createdAt: formatDate(),
         updatedAt: formatDate(),
     },
+
     {
         _id: 7,
         firstName: "Irita",

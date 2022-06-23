@@ -17,9 +17,10 @@ function Login() {
     const [showPassword, setShowPassword] = useState(false);
 
     const defaultLoginCredentials = {
-        username: "parthgabani",
-        password: "parth123",
+        username: "",
+        password: "",
     };
+
     const [loginCredentials, setLoginCredentials] = useState(
         defaultLoginCredentials
     );
@@ -27,6 +28,13 @@ function Login() {
         setLoginCredentials({
             ...loginCredentials,
             [e.target.id]: e.target.value,
+        });
+    };
+    const fillGuestLoginCredentials = (e) => {
+        e.preventDefault();
+        setLoginCredentials({
+            username: "parthgabani",
+            password: "parth123",
         });
     };
 
@@ -45,7 +53,7 @@ function Login() {
     return (
         <section className="login">
             <form className="auth text-s">
-                <div className="auth-form box-shadow p-4">
+                <div className="auth-form box-shadow p-4 py-1">
                     <h3 className="text-l text-center py-1">Login</h3>
 
                     <div className="input-group py-1">
@@ -88,7 +96,6 @@ function Login() {
                             <input type="checkbox" id="remember_me" />
                             <label htmlFor="remember_me">Remember Me</label>
                         </div>
-                        <a className="link-blue">Forget Password?</a>
                     </div>
 
                     <div className="py-1 text-center">
@@ -101,7 +108,19 @@ function Login() {
                     </div>
 
                     <div className="py-1 text-center">
-                        <Link to="/signup" className="link-blue">
+                        <button
+                            className="btn btn-light auth-btn br-1"
+                            onClick={fillGuestLoginCredentials}
+                        >
+                            Login as Guest
+                        </button>
+                    </div>
+
+                    <div className="py-1 text-center">
+                        <Link
+                            to="/signup"
+                            className="text-primary border-bottom "
+                        >
                             Create an Account
                         </Link>
                     </div>

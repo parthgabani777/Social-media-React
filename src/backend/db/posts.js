@@ -9,8 +9,7 @@ import { formatDate } from "../utils/authUtils";
 export const posts = [
     {
         _id: uuid(),
-        content:
-            "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+        content: "Hello, how going on?",
         likes: {
             likeCount: 0,
             likedBy: [],
@@ -29,6 +28,7 @@ export const posts = [
                     upvotedBy: [],
                     downvotedBy: [],
                 },
+                createdAt: formatDate(),
             },
             {
                 _id: uuid(),
@@ -38,6 +38,7 @@ export const posts = [
                     upvotedBy: [],
                     downvotedBy: [],
                 },
+                createdAt: formatDate(),
             },
         ],
     },
@@ -60,6 +61,7 @@ export const posts = [
                     upvotedBy: [],
                     downvotedBy: [],
                 },
+                createdAt: formatDate(),
             },
             {
                 _id: uuid(),
@@ -69,9 +71,102 @@ export const posts = [
                     upvotedBy: [],
                     downvotedBy: [],
                 },
+                createdAt: formatDate(),
             },
         ],
         createdAt: formatDate(),
         updatedAt: formatDate(),
+    },
+    {
+        _id: uuid(),
+        content: "In India, everyone is a self taught developer.",
+        likes: {
+            likeCount: 0,
+            likedBy: [],
+            dislikedBy: [],
+        },
+        username: "tanaypratap",
+        userId: 8,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        comments: [
+            {
+                _id: uuid(),
+                username: "parthgabani",
+                text: "true",
+                votes: {
+                    upvotedBy: [],
+                    downvotedBy: [],
+                },
+                createdAt: formatDate(),
+            },
+        ],
+    },
+    {
+        _id: uuid(),
+        content:
+            "80% of people get rejected for an interview. Out of the 20%, only 2-3% get the job.Here’s how you can avoid interview rejection and increase your chances of selection",
+        likes: {
+            likeCount: 0,
+            likedBy: [],
+            dislikedBy: [],
+        },
+        username: "tanaypratap",
+        userId: 8,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        comments: [],
+    },
+    {
+        _id: uuid(),
+        content:
+            "It’s not overnight success or luck, it’s 10 years of sleepless nights and hard work.",
+        likes: {
+            likeCount: 0,
+            likedBy: [],
+            dislikedBy: [],
+        },
+        username: "tanaypratap",
+        userId: 8,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        comments: [
+            {
+                _id: uuid(),
+                username: "parthgabani",
+                text: "That's true man, every brand you see nowadays had faced all the things.",
+                votes: {
+                    upvotedBy: [],
+                    downvotedBy: [],
+                },
+                createdAt: formatDate(),
+            },
+        ],
+    },
+    {
+        _id: uuid(),
+        content:
+            "Turning off your social media notifications is still one of the best productivity hacks of all time.",
+        likes: {
+            likeCount: 0,
+            likedBy: [],
+            dislikedBy: [],
+        },
+        username: "tanaypratap",
+        userId: 8,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        comments: [
+            {
+                _id: uuid(),
+                username: "parthgabani",
+                text: "Focus mode🙌🏻",
+                votes: {
+                    upvotedBy: [],
+                    downvotedBy: [],
+                },
+                createdAt: formatDate(),
+            },
+        ],
     },
 ];

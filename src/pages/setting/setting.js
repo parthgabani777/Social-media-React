@@ -44,12 +44,14 @@ function Setting() {
         const reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
 
-        reader.onload = () =>
+        reader.onload = () => {
+            console.log(reader.result);
             reader.readyState === 2 &&
-            setUserData({
-                ...userData,
-                picture: reader.result,
-            });
+                setUserData({
+                    ...userData,
+                    picture: reader.result,
+                });
+        };
     };
 
     return (

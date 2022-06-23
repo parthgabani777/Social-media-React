@@ -43,7 +43,7 @@
 
 .right-sidebar .follow-suggestion {
     margin: 2rem 0;
-    padding: 2rem;
+    padding: 2rem 0;
     background-color: var(--light-black-color);
     color: var(--light-white-color-2);
     border-radius: 2rem;
@@ -51,19 +51,24 @@
 
 .follow-suggestion-header {
     padding-bottom: 2rem;
+    padding-inline: 2rem;
 }
 
 .right-sidebar .user-list {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
 }
 
 .follow-suggestion .user {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
 }
-
+.follow-suggestion .user:hover {
+    background-color: #222;
+    cursor: pointer;
+}
 .right-sidebar .user-info {
     display: flex;
     gap: 1rem;

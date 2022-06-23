@@ -150,10 +150,13 @@ export function SingleUser() {
             </div>
 
             <div className="post-container">
-                {activeTab === "posts" &&
+                {activeTab === "posts" && userPosts.length === 0 ? (
+                    <p className="text-grey">No post created by user yet.</p>
+                ) : (
                     userPosts?.map((post) => (
                         <Post post={post} key={post._id} />
-                    ))}
+                    ))
+                )}
             </div>
         </div>
     );
