@@ -1,8 +1,11 @@
 import { useState } from "react";
-import "./add-post.css";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import "./add-post-modal.css";
 
 export function AddPostModal({ show, onClose, onSubmit, content }) {
     if (!show) return null;
+    const { loggedInUser } = useSelector((state) => state.userReducer);
 
     const [postData, setPostData] = useState({
         content,
@@ -19,9 +22,23 @@ export function AddPostModal({ show, onClose, onSubmit, content }) {
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="add-post-profile-picture">
-                    <i className="fas fa-user-circle"></i>
+                    {loggedInUser.picture ? (
+                        <img
+                            src={loggedInUser.picture}
+                            alt="profile picture"
+                            className="profile-picture"
+                        />
+                    ) : (
+                        <i className="fas fa-user-circle"></i>
+                    )}
                 </div>
-                <div className="input-fields">
+                <form
+                    className="input-fields"
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        onSubmit(postData);
+                    }}
+                >
                     <div className="input-textarea">
                         <textarea
                             placeholder="Write Something Interesting...."
@@ -29,22 +46,17 @@ export function AddPostModal({ show, onClose, onSubmit, content }) {
                             id="content"
                             value={postData.content}
                             onChange={changePostData}
+                            required
                         />
                     </div>
                     <div className="add-post-footer">
-                        <div className="input-image text-m">
-                            <i className="fas fa-image"></i>
-                        </div>
                         <div className="post">
-                            <button
-                                className="btn btn-primary br-3 text-s"
-                                onClick={() => onSubmit(postData)}
-                            >
+                            <button className="btn btn-primary br-3 text-s">
                                 Post
                             </button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );

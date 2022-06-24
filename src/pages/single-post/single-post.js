@@ -1,7 +1,7 @@
 import "./single-post.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { CustomLoader } from "../../components/customLoader/customloader";
 import { Post } from "../../components/post/post";
 import { addComment, getPost } from "../../slices/postSlice";
@@ -11,10 +11,12 @@ import { toast } from "react-toastify";
 function SinglePost() {
     const { postId } = useParams();
     const dispatch = useDispatch();
-    const { currentPost, isLoading } = useSelector(
+    const navigation = useNavigate();
+    const { currentPost, isLoading, posts } = useSelector(
         (state) => state.postsReducer
     );
     const { token } = useSelector((state) => state.authReducer);
+    const { loggedInUser } = useSelector((state) => state.userReducer);
 
     const [commentText, setCommentText] = useState("");
 
@@ -23,10 +25,10 @@ function SinglePost() {
             try {
                 await dispatch(getPost(postId)).unwrap();
             } catch (error) {
-                toast.error("Post does not exist.");
+                navigation("/");
             }
         })();
-    }, []);
+    }, [posts]);
 
     const addCommentClickHandler = async () => {
         try {
@@ -39,6 +41,10 @@ function SinglePost() {
         }
     };
 
+    const commentSortByLatest = currentPost?.comments
+        .slice()
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
     if (isLoading) return <CustomLoader />;
 
     return (
@@ -48,7 +54,15 @@ function SinglePost() {
 
                 <div className="add-comment">
                     <div className="add-comment-profile-picture">
-                        <i className="fas fa-user-circle"></i>
+                        {loggedInUser.picture ? (
+                            <img
+                                src={loggedInUser.picture}
+                                alt="profile picture"
+                                className="profile-picture"
+                            />
+                        ) : (
+                            <i className="fas fa-user-circle"></i>
+                        )}
                     </div>
                     <div className="input-textarea">
                         <textarea
@@ -66,7 +80,7 @@ function SinglePost() {
                 </div>
 
                 <div className="comment-container">
-                    {currentPost.comments.map((comment) => (
+                    {commentSortByLatest.map((comment) => (
                         <Comment comment={comment} key={comment._id} />
                     ))}
                 </div>

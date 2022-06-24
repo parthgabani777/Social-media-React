@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./post.css";
 import {
     deletePost,
@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 
 function Post({ post }) {
     const dispatch = useDispatch();
+    const navigation = useNavigate();
     const {
         _id: postId,
         content,
@@ -34,37 +35,46 @@ function Post({ post }) {
 
     // Liked post features
     const isPostLiked = likedBy?.some((user) => user._id === userId);
-    const likeClickHandler = () => {
+    const likeClickHandler = (e) => {
+        e.stopPropagation();
         dispatch(likePost({ postId, token }));
     };
-    const dislikeClickHandler = () => {
+    const dislikeClickHandler = (e) => {
+        e.stopPropagation();
         dispatch(dislikePost({ postId, token }));
     };
 
     // Bookmark post features
     const isPostBookmarked = bookmarks?.some((post) => post._id === postId);
-    const addBookmarkClickHandler = () => {
+    const addBookmarkClickHandler = (e) => {
+        e.stopPropagation();
         dispatch(addBookmark({ postId, token }));
     };
-    const removeBookmarkClickHandler = () => {
+    const removeBookmarkClickHandler = (e) => {
+        e.stopPropagation();
         dispatch(removeBookmark({ postId, token }));
     };
 
     // Submenu to edit/delete post
     const [showSubMenu, setShowSubMenu] = useState(false);
-    const toggleShowSubMenu = () => {
+    const toggleShowSubMenu = (e) => {
+        e.stopPropagation();
         setShowSubMenu((showSubMenu) => !showSubMenu);
     };
 
     // edit/delete post modal
     const [showAddPostModal, setShowAddPostModal] = useState(false);
-    const editPostClickHandler = () => {
+    const editPostClickHandler = (e) => {
+        e.stopPropagation();
+        setShowSubMenu(false);
         setShowAddPostModal(true);
     };
-    const deletePostClickHandler = async () => {
+    const deletePostClickHandler = async (e) => {
+        e.stopPropagation();
+        setShowSubMenu(false);
         try {
             await dispatch(deletePost({ postId, token })).unwrap();
-            toast.success("Post deleted");
+            toast.error("Post deleted");
         } catch (error) {
             toast.error("Post can't be deleted");
         }
@@ -79,7 +89,12 @@ function Post({ post }) {
     });
 
     return (
-        <div className="post-modal">
+        <div
+            className="post-modal"
+            onClick={(e) => {
+                navigation(`/post/${postId}`);
+            }}
+        >
             {isLoggedInUserPost && (
                 <div className="options-container" onClick={toggleShowSubMenu}>
                     <i className="fas fa-ellipsis-v option-icon"></i>
@@ -104,7 +119,10 @@ function Post({ post }) {
 
             <AddPostModal
                 show={showAddPostModal}
-                onClose={() => setShowAddPostModal(false)}
+                onClose={(e) => {
+                    e.stopPropagation();
+                    setShowAddPostModal(false);
+                }}
                 onSubmit={async (postData) => {
                     try {
                         dispatch(editPost({ postId, postData, token }));
@@ -117,7 +135,11 @@ function Post({ post }) {
                 content={content}
             />
 
-            <Link to={`/user/${post.userId}`} className="post-profile-picture">
+            <Link
+                to={`/user/${post.userId}`}
+                onClick={(e) => e.stopPropagation()}
+                className="post-profile-picture"
+            >
                 {picture ? (
                     <img
                         src={picture}
@@ -136,6 +158,7 @@ function Post({ post }) {
                                 ? `/profile`
                                 : `/user/${post.userId}`
                         }
+                        onClick={(e) => e.stopPropagation()}
                         className="post-profile-username fw-bold"
                     >
                         {username}
@@ -143,11 +166,11 @@ function Post({ post }) {
                     - <span className="create-date">{formattedCreateDate}</span>
                 </div>
 
-                <Link to={`/post/${postId}`} className="post-content">
+                <div className="post-content">
                     <div className="post-text">
                         <p>{content}</p>
                     </div>
-                </Link>
+                </div>
 
                 <div className="post-icons text-m">
                     {isPostLiked ? (

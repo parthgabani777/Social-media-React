@@ -5,6 +5,7 @@ import "./home.css";
 import { getAllPosts } from "../../slices/postSlice";
 import { CustomLoader } from "../../components/customLoader/customloader";
 import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 
 function Home() {
     const { loggedInUser } = useSelector((state) => state.userReducer);
@@ -14,10 +15,13 @@ function Home() {
     const dispatch = useDispatch();
 
     const [postFilters, setPostFilters] = useState("latest");
-
     const changePostFilter = (e) => {
         setPostFilters(e.target.id);
     };
+
+    useEffect(() => {
+        dispatch(getAllPosts());
+    }, [postFilters]);
 
     const sortPosts = (posts) => {
         switch (postFilters) {
@@ -44,10 +48,6 @@ function Home() {
                       )
               )
             : sortPosts(posts);
-
-    useEffect(() => {
-        dispatch(getAllPosts());
-    }, []);
 
     if (isLoading) return <CustomLoader />;
 
@@ -76,6 +76,14 @@ function Home() {
                       ))
                     : "No post found. Follow other user to see their posts."}
             </div>
+            {location.pathname === "/" && (
+                <Link
+                    to="/explore"
+                    className="btn btn-primary btn-explore-more br-3"
+                >
+                    Explore more
+                </Link>
+            )}
         </div>
     );
 }

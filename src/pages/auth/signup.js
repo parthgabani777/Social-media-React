@@ -31,6 +31,17 @@ function Signup() {
         });
     };
 
+    const fillGuestSignupCredentials = (e) => {
+        e.preventDefault();
+        setSignupCredentials({
+            firstName: "John",
+            lastName: "Dow",
+            username: "johndoe",
+            password: "john123",
+            confirmPassword: "john123",
+        });
+    };
+
     const signupClickHandler = async (e) => {
         e.preventDefault();
         try {
@@ -51,7 +62,7 @@ function Signup() {
 
     return (
         <section className="signup bg-primary">
-            <form className="auth text-s">
+            <form className="auth text-s" onSubmit={signupClickHandler}>
                 <div className="auth-form box-shadow p-4">
                     <h3 className="text-l text-center py-1">Signup</h3>
 
@@ -64,6 +75,7 @@ function Signup() {
                             id="firstName"
                             value={signupCredentials.firstName}
                             onChange={signupCredentialsChangeHandler}
+                            required
                         />
                     </div>
 
@@ -73,9 +85,10 @@ function Signup() {
                             type="text"
                             className="input text-s"
                             id="lastName"
-                            placeholder="Dave"
+                            placeholder="Doe"
                             value={signupCredentials.lastName}
                             onChange={signupCredentialsChangeHandler}
+                            required
                         />
                     </div>
 
@@ -88,6 +101,7 @@ function Signup() {
                             placeholder="johndoe"
                             value={signupCredentials.username}
                             onChange={signupCredentialsChangeHandler}
+                            required
                         />
                     </div>
 
@@ -101,6 +115,7 @@ function Signup() {
                                 placeholder="************"
                                 value={signupCredentials.password}
                                 onChange={signupCredentialsChangeHandler}
+                                required
                             />
                             <i
                                 className={`fas ${
@@ -115,7 +130,7 @@ function Signup() {
 
                     <div className="input-group py-1">
                         <label htmlFor="confirm-password">
-                            Confitm Password
+                            Confirm Password
                         </label>
                         <div className="password-input">
                             <input
@@ -130,6 +145,7 @@ function Signup() {
                                         confirmPassword: e.target.value,
                                     });
                                 }}
+                                required
                             />
                             <i
                                 className={`fas ${
@@ -152,16 +168,25 @@ function Signup() {
                     </div>
 
                     <div className="py-1 text-center">
-                        <button
-                            className="btn btn-light auth-btn br-1"
-                            onClick={signupClickHandler}
-                        >
+                        <button className="btn btn-light auth-btn br-1">
                             Create an Account
                         </button>
                     </div>
 
                     <div className="py-1 text-center">
-                        <Link to="/login" className="link-blue">
+                        <button
+                            className="btn btn-light auth-btn br-1"
+                            onClick={fillGuestSignupCredentials}
+                        >
+                            Fill dummy details
+                        </button>
+                    </div>
+
+                    <div className="py-1 text-center">
+                        <Link
+                            to="/login"
+                            className="text-primary border-bottom"
+                        >
                             Already have account
                         </Link>
                     </div>

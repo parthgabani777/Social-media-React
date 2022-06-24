@@ -15,7 +15,10 @@ function Profile() {
     const { posts } = useSelector((state) => state.postsReducer);
     const dispatch = useDispatch();
 
+    const [localLoader, setLocalLoader] = useState(true);
+
     useEffect(() => {
+        setLocalLoader(false);
         dispatch(getAllPosts());
     }, []);
 
@@ -46,11 +49,17 @@ function Profile() {
     const tabContent = () => {
         switch (activeTab) {
             case "posts":
+                const userPostsSortByLatest = userPosts
+                    ?.slice()
+                    .sort(
+                        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                    );
+
                 return (
                     <>
                         {userPosts?.length === 0
                             ? "No post created"
-                            : userPosts?.map((post) => (
+                            : userPostsSortByLatest?.map((post) => (
                                   <Post post={post} key={post._id} />
                               ))}
                     </>
@@ -80,7 +89,7 @@ function Profile() {
         }
     };
 
-    if (isLoading) return <CustomLoader />;
+    if (isLoading && localLoader) return <CustomLoader />;
 
     return (
         <div className="profile">

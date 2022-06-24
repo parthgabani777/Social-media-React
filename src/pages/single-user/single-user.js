@@ -33,7 +33,7 @@ export function SingleUser() {
                 toast.error("User does not exist.");
             }
         })();
-    }, []);
+    }, [userId]);
 
     useEffect(() => {
         dispatch(getUserPosts({ userId }));
@@ -73,7 +73,15 @@ export function SingleUser() {
         <div className="profile">
             <div className="profile-container">
                 <div className="profile-picture">
-                    <i className="fas fa-user-circle"></i>
+                    {userData.picture ? (
+                        <img
+                            src={userData.picture}
+                            alt="profile picture"
+                            className="profile-picture"
+                        />
+                    ) : (
+                        <i className="fas fa-user-circle"></i>
+                    )}
                     {isFollowing ? (
                         <button
                             onClick={unfollowUserClickHandler}
@@ -142,10 +150,13 @@ export function SingleUser() {
             </div>
 
             <div className="post-container">
-                {activeTab === "posts" &&
+                {activeTab === "posts" && userPosts.length === 0 ? (
+                    <p className="text-grey">No post created by user yet.</p>
+                ) : (
                     userPosts?.map((post) => (
                         <Post post={post} key={post._id} />
-                    ))}
+                    ))
+                )}
             </div>
         </div>
     );
