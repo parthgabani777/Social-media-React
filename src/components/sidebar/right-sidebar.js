@@ -21,14 +21,14 @@ export function RightSidebar() {
     const onChangeHandler = (e) => {
         setSearch(e.target.value);
     };
-    const debounce = (cb, delay = 1000) => {
+    const debounce = (cb, delay = 200) => {
         let timer;
         return (...args) => {
             clearTimeout(timer);
             timer = setTimeout(() => cb(...args), delay);
         };
     };
-    const debouncedOnChangeHandler = debounce(onChangeHandler, 1000);
+    const debouncedOnChangeHandler = debounce(onChangeHandler, 300);
 
     // For filtering the products based on search query
     const SearchedUsers = allUser?.filter((user) => {

@@ -2,6 +2,7 @@ import "./comment.css";
 
 export function Comment({ comment }) {
     const { text, username } = comment;
+    console.log(comment);
 
     return (
         <div className="comment-modal">

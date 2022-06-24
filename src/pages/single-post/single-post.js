@@ -16,6 +16,7 @@ function SinglePost() {
         (state) => state.postsReducer
     );
     const { token } = useSelector((state) => state.authReducer);
+    const { loggedInUser } = useSelector((state) => state.userReducer);
 
     const [commentText, setCommentText] = useState("");
 
@@ -53,7 +54,15 @@ function SinglePost() {
 
                 <div className="add-comment">
                     <div className="add-comment-profile-picture">
-                        <i className="fas fa-user-circle"></i>
+                        {loggedInUser.picture ? (
+                            <img
+                                src={loggedInUser.picture}
+                                alt="profile picture"
+                                className="profile-picture"
+                            />
+                        ) : (
+                            <i className="fas fa-user-circle"></i>
+                        )}
                     </div>
                     <div className="input-textarea">
                         <textarea

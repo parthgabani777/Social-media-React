@@ -57,12 +57,12 @@ function Login() {
                     <h3 className="text-l text-center py-1">Login</h3>
 
                     <div className="input-group py-1">
-                        <label htmlFor="email">Email address</label>
+                        <label htmlFor="username">Username</label>
                         <input
                             type="text"
                             className="input text-s"
                             id="username"
-                            placeholder="mail@gmail.com"
+                            placeholder="johndoe"
                             value={loginCredentials.username}
                             onChange={loginCredentialsChangeHandler}
                         />
