@@ -11,7 +11,7 @@ export const posts = [
         _id: uuid(),
         content: "How's going on?",
         likes: {
-            likeCount: 0,
+            likeCount: 3,
             likedBy: [],
             dislikedBy: [],
         },
@@ -26,7 +26,7 @@ export const posts = [
                     upvotedBy: [],
                     downvotedBy: [],
                 },
-                createdAt: formatDate(),
+                createdAt: "2022-06-23T22:33:10+05:30",
             },
             {
                 _id: uuid(),
@@ -39,20 +39,20 @@ export const posts = [
                 createdAt: formatDate(),
             },
         ],
-        createdAt: formatDate(),
+        createdAt: "2022-06-23T22:33:10+05:30",
         updatedAt: formatDate(),
     },
     {
         _id: uuid(),
         content: "In India, everyone is a self taught developer.",
         likes: {
-            likeCount: 0,
+            likeCount: 5,
             likedBy: [],
             dislikedBy: [],
         },
         username: "tanaypratap",
         userId: 8,
-        createdAt: formatDate(),
+        createdAt: "2022-06-22T21:33:10+05:30",
         updatedAt: formatDate(),
         comments: [
             {
@@ -72,13 +72,13 @@ export const posts = [
         content:
             "80% of people get rejected for an interview. Out of the 20%, only 2-3% get the job.Here’s how you can avoid interview rejection and increase your chances of selection",
         likes: {
-            likeCount: 0,
+            likeCount: 8,
             likedBy: [],
             dislikedBy: [],
         },
         username: "tanaypratap",
         userId: 8,
-        createdAt: formatDate(),
+        createdAt: "2022-06-21T22:33:10+05:30",
         updatedAt: formatDate(),
         comments: [],
     },
@@ -87,13 +87,13 @@ export const posts = [
         content:
             "It’s not overnight success or luck, it’s 10 years of sleepless nights and hard work.",
         likes: {
-            likeCount: 0,
+            likeCount: 2,
             likedBy: [],
             dislikedBy: [],
         },
         username: "tanaypratap",
         userId: 8,
-        createdAt: formatDate(),
+        createdAt: "2022-06-20T22:33:10+05:30",
         updatedAt: formatDate(),
         comments: [
             {
@@ -113,13 +113,13 @@ export const posts = [
         content:
             "Turning off your social media notifications is still one of the best productivity hacks of all time.",
         likes: {
-            likeCount: 0,
+            likeCount: 6,
             likedBy: [],
             dislikedBy: [],
         },
         username: "tanaypratap",
         userId: 8,
-        createdAt: formatDate(),
+        createdAt: "2022-06-21T22:33:10+05:30",
         updatedAt: formatDate(),
         comments: [
             {
@@ -138,13 +138,13 @@ export const posts = [
         _id: uuid(),
         content: "You'll never be 100% prepared for that interview.",
         likes: {
-            likeCount: 0,
+            likeCount: 5,
             likedBy: [],
             dislikedBy: [],
         },
         username: "akshaysaini",
         userId: 9,
-        createdAt: formatDate(),
+        createdAt: "2022-06-21T22:33:10+05:30",
         updatedAt: formatDate(),
         comments: [
             {
@@ -163,13 +163,13 @@ export const posts = [
         _id: uuid(),
         content: "The easiest part of building a product is writing code.",
         likes: {
-            likeCount: 0,
+            likeCount: 3,
             likedBy: [],
             dislikedBy: [],
         },
         username: "akshaysaini",
         userId: 9,
-        createdAt: formatDate(),
+        createdAt: "2022-06-22T22:33:10+05:30",
         updatedAt: formatDate(),
         comments: [],
     },
@@ -178,13 +178,13 @@ export const posts = [
         content:
             "good companies with bad interviewers often lose great people;",
         likes: {
-            likeCount: 0,
+            likeCount: 8,
             likedBy: [],
             dislikedBy: [],
         },
         username: "akshaysaini",
         userId: 9,
-        createdAt: formatDate(),
+        createdAt: "2022-06-21T22:33:10+05:30",
         updatedAt: formatDate(),
         comments: [],
     },

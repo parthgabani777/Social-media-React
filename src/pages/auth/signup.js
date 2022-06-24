@@ -158,14 +158,14 @@ function Signup() {
                         </div>
                     </div>
 
-                    <div className="input-checkbox py-1">
+                    {/* <div className="input-checkbox py-1">
                         <div>
                             <input type="checkbox" id="tc" />
                             <label htmlFor="tc">
                                 I accept all terms and conditions
                             </label>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="py-1 text-center">
                         <button className="btn btn-light auth-btn br-1">

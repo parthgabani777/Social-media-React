@@ -14,6 +14,8 @@ function Home() {
     const location = useLocation();
     const dispatch = useDispatch();
 
+    console.log(posts);
+
     const [postFilters, setPostFilters] = useState("latest");
     const changePostFilter = (e) => {
         setPostFilters(e.target.id);

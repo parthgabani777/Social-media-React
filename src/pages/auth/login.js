@@ -91,12 +91,12 @@ function Login() {
                         </div>
                     </div>
 
-                    <div className="input-checkbox py-1">
+                    {/* <div className="input-checkbox py-1">
                         <div>
                             <input type="checkbox" id="remember_me" />
                             <label htmlFor="remember_me">Remember Me</label>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="py-1 text-center">
                         <button
