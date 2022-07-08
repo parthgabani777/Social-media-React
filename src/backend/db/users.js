@@ -34,7 +34,7 @@ export const users = [
         createdAt: formatDate(),
         updatedAt: formatDate(),
         picture:
-            "https://pbs.twimg.com/profile_images/1501178147420585987/5_2plEJW_400x400.jpg",
+            "https://i.imgur.com/LOIVrvw.jpg",
     },
     {
         _id: 9,
@@ -45,7 +45,7 @@ export const users = [
         createdAt: formatDate(),
         updatedAt: formatDate(),
         picture:
-            "https://pbs.twimg.com/profile_images/1219645637324488705/XD94Q6D1_400x400.jpg",
+            "https://i.imgur.com/IouAC5u.jpg",
     },
 
     {
