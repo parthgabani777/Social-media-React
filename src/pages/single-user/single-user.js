@@ -41,7 +41,7 @@ export function SingleUser() {
 
     const tabLinks = [{ name: "Posts", id: "posts", icon: "fa-clone" }];
 
-    const isFollowing = loggedInUser?.following.some(
+    const isFollowing = loggedInUser?.followings.some(
         (user) => user._id === parseInt(userId)
     );
 
@@ -125,7 +125,7 @@ export function SingleUser() {
                         </span>
                         <span className="following">
                             <span className="fw-bold">
-                                {userData.following.length}
+                                {userData.followings.length}
                             </span>{" "}
                             Following
                         </span>

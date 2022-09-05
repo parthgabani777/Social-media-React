@@ -19,11 +19,10 @@ function Post({ post }) {
         _id: postId,
         content,
         likes: { likeCount, likedBy },
-        username,
         createdAt,
         postCreatedBy,
     } = post;
-    const { picture } = postCreatedBy;
+    const { picture, username } = postCreatedBy;
 
     const { token } = useSelector((state) => state.authReducer);
 
@@ -31,10 +30,10 @@ function Post({ post }) {
     const { _id: userId, bookmarks } = loggedInUser;
 
     // Post belongs to logged in user
-    const isLoggedInUserPost = post.userId === userId;
+    const isLoggedInUserPost = post.postCreatedBy._id === userId;
 
     // Liked post features
-    const isPostLiked = likedBy?.some((user) => user._id === userId);
+    const isPostLiked = likedBy?.some((likedUserId) => likedUserId === userId);
     const likeClickHandler = (e) => {
         e.stopPropagation();
         dispatch(likePost({ postId, token }));
@@ -45,7 +44,9 @@ function Post({ post }) {
     };
 
     // Bookmark post features
-    const isPostBookmarked = bookmarks?.some((post) => post._id === postId);
+    const isPostBookmarked = bookmarks?.some((bookmarkedPost) => {
+        return bookmarkedPost._id === postId;
+    });
     const addBookmarkClickHandler = (e) => {
         e.stopPropagation();
         dispatch(addBookmark({ postId, token }));
@@ -136,7 +137,7 @@ function Post({ post }) {
             />
 
             <Link
-                to={`/user/${post.userId}`}
+                to={`/user/${postCreatedBy._id}`}
                 onClick={(e) => e.stopPropagation()}
                 className="post-profile-picture"
             >
@@ -156,7 +157,7 @@ function Post({ post }) {
                         to={
                             isLoggedInUserPost
                                 ? `/profile`
-                                : `/user/${post.userId}`
+                                : `/user/${postCreatedBy._id}`
                         }
                         onClick={(e) => e.stopPropagation()}
                         className="post-profile-username fw-bold"

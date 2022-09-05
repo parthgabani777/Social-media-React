@@ -44,9 +44,10 @@ function Home() {
         location.pathname === "/"
             ? sortPosts(posts).filter(
                   (post) =>
-                      post.userId === userId ||
-                      loggedInUser.following.some(
-                          (followinguser) => post.userId === followinguser._id
+                      post.postCreatedBy._id === userId ||
+                      loggedInUser.followings.some(
+                          (followingUserId) =>
+                              post.postCreatedBy._id === followingUserId
                       )
               )
             : sortPosts(posts);

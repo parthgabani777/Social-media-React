@@ -1,16 +1,17 @@
 import axios from "axios";
+import { userEndpoints } from "./endpoints";
 
 const getAllUsersService = () => {
-    return axios.get("/api/users");
+    return axios.get(userEndpoints.getAllUsers);
 };
 
 const getUserService = (userId) => {
-    return axios.get(`/api/users/${userId}`);
+    return axios.get(userEndpoints.getUser(userId));
 };
 
 const postUserDataService = (userData, token) => {
     return axios.post(
-        "/api/users/edit",
+        userEndpoints.postUserData,
         { userData },
         {
             headers: { authorization: token },
@@ -20,7 +21,7 @@ const postUserDataService = (userData, token) => {
 
 const getBookmarksService = (token) => {
     return axios.get(
-        "/api/users/bookmark",
+        userEndpoints.getBookmarks,
         {},
         {
             headers: { authorization: token },
@@ -30,7 +31,7 @@ const getBookmarksService = (token) => {
 
 const addBookmarkService = (postId, token) => {
     return axios.post(
-        `/api/users/bookmark/${postId}`,
+        userEndpoints.addBookmarks(postId),
         {},
         {
             headers: { authorization: token },
@@ -40,7 +41,7 @@ const addBookmarkService = (postId, token) => {
 
 const removeBookmarkService = (postId, token) => {
     return axios.post(
-        `/api/users/remove-bookmark/${postId}`,
+        userEndpoints.removeBookmark(postId),
         {},
         {
             headers: { authorization: token },
@@ -50,7 +51,7 @@ const removeBookmarkService = (postId, token) => {
 
 const followUserService = (followUserId, token) => {
     return axios.post(
-        `/api/users/follow/${followUserId}`,
+        userEndpoints.followUser(followUserId),
         {},
         {
             headers: { authorization: token },
@@ -60,7 +61,7 @@ const followUserService = (followUserId, token) => {
 
 const unfollowUserService = (followUserId, token) => {
     return axios.post(
-        `/api/users/unfollow/${followUserId}`,
+        userEndpoints.unfollowUser(followUserId),
         {},
         {
             headers: { authorization: token },

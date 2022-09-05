@@ -1,7 +1,7 @@
 import "./comment.css";
 
 export function Comment({ comment }) {
-    const { text, username } = comment;
+    const { text, commentedBy } = comment;
     console.log(comment);
 
     return (
@@ -12,7 +12,7 @@ export function Comment({ comment }) {
             <div className="comment-info">
                 <div className="comment-header ">
                     <div className="comment-profile-username fw-bold">
-                        {username}
+                        {commentedBy.username}
                     </div>
                 </div>
 

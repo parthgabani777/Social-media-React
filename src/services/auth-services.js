@@ -1,7 +1,8 @@
 import axios from "axios";
+import { authEndpoints } from "./endpoints";
 
 const loginUserService = ({ username, password }) => {
-    return axios.post("/api/auth/login", {
+    return axios.post(authEndpoints.login, {
         username,
         password,
     });
@@ -13,7 +14,7 @@ const signupUserService = async ({
     username,
     password,
 }) => {
-    return axios.post("/api/auth/signup", {
+    return axios.post(authEndpoints.signup, {
         firstName,
         lastName,
         username,

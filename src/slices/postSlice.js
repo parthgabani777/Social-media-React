@@ -38,6 +38,7 @@ export const getPost = createAsyncThunk("posts/getPost", async (postId) => {
 export const addPost = createAsyncThunk(
     "posts/addPost",
     async ({ postData, token }) => {
+        console.log(postData);
         const response = await addPostService(postData, token);
         const {
             data: { posts },

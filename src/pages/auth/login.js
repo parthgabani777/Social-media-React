@@ -8,7 +8,7 @@ import { CustomLoader } from "../../components/customLoader/customloader";
 import { toast } from "react-toastify";
 
 function Login() {
-    const { isLoading, error } = useSelector((state) => state.authReducer);
+    const { isLoading } = useSelector((state) => state.authReducer);
     const dispatch = useDispatch();
     const navigation = useNavigate();
     const location = useLocation();
@@ -33,8 +33,8 @@ function Login() {
     const fillGuestLoginCredentials = (e) => {
         e.preventDefault();
         setLoginCredentials({
-            username: "parthgabani",
-            password: "parth123",
+            username: "parth",
+            password: "1234123@",
         });
     };
 

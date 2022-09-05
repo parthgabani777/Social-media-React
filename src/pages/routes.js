@@ -11,12 +11,15 @@ import {
 } from "./index";
 import { RequiresAuth } from "./RequiresAuth";
 import { useSelector } from "react-redux";
+import Mockman from "mockman-js";
 
 function PageRoutes() {
     const auth = useSelector((state) => state.authReducer);
 
     return (
         <Routes>
+            <Route path="/mock" element={<Mockman colorScheme="dark" />} />
+
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="*" element={<NotFound />} />

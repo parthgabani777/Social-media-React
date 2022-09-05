@@ -143,6 +143,7 @@ export const userSlice = createSlice({
     reducers: {},
     extraReducers: {
         [login.fulfilled]: (state, { payload: { foundUser } }) => {
+            console.log(foundUser);
             state.loggedInUser = foundUser;
         },
         [signup.fulfilled]: (state, { payload: { createdUser } }) => {

@@ -31,7 +31,7 @@ function Profile() {
     );
 
     const getLikedPost = posts.filter((post) =>
-        post.likes.likedBy.some((user) => user._id === userId)
+        post.likes.likedBy.some((likeUserId) => likeUserId === userId)
     );
 
     const tabLinks = [
@@ -125,7 +125,10 @@ function Profile() {
                         {loggedInUser.bio || ""}
                     </div>
                     <div className="profile-website">
-                        <a href={loggedInUser.portfolio}>
+                        <a
+                            href={`https://${loggedInUser.portfolio}`}
+                            target="_blank"
+                        >
                             {loggedInUser.portfolio || ""}
                         </a>
                     </div>
@@ -138,7 +141,7 @@ function Profile() {
                         </span>
                         <span className="following">
                             <span className="fw-bold">
-                                {loggedInUser.following.length}
+                                {loggedInUser.followings.length}
                             </span>{" "}
                             Following
                         </span>
