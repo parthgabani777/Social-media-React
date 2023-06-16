@@ -1,20 +1,21 @@
 import axios from "axios";
+import { POST_URL } from "./constant";
 
 const getAllPostsService = () => {
-  return axios.get("/api/posts");
+  return axios.get(POST_URL);
 };
 
 const getPostService = (postId) => {
-  return axios.get(`/api/posts/${postId}`);
+  return axios.get(`${POST_URL}/${postId}`);
 };
 
 const getUserPostsService = (userId) => {
-  return axios.get(`/api/posts/user/${userId}`);
+  return axios.get(`${POST_URL}/user/${userId}`);
 };
 
 const addPostService = (postData, token) => {
   return axios.post(
-    "/api/posts",
+    `${POST_URL}`,
     { postData },
     {
       headers: { authorization: token },
@@ -23,14 +24,14 @@ const addPostService = (postData, token) => {
 };
 
 const deletePostService = (postId, token) => {
-  return axios.delete(`/api/posts/${postId}`, {
+  return axios.delete(`${POST_URL}/${postId}`, {
     headers: { authorization: token },
   });
 };
 
 const editPostService = (postId, postData, token) => {
   return axios.post(
-    `/api/posts/edit/${postId}`,
+    `${POST_URL}/edit/${postId}`,
     { postData },
     {
       headers: { authorization: token },
@@ -40,7 +41,7 @@ const editPostService = (postId, postData, token) => {
 
 const likePostService = (postId, token) => {
   return axios.post(
-    `/api/posts/like/${postId}`,
+    `${POST_URL}/like/${postId}`,
     {},
     {
       headers: { authorization: token },
@@ -50,7 +51,7 @@ const likePostService = (postId, token) => {
 
 const dislikePostService = (postId, token) => {
   return axios.post(
-    `/api/posts/dislike/${postId}`,
+    `${POST_URL}/dislike/${postId}`,
     {},
     {
       headers: { authorization: token },
