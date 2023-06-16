@@ -1,102 +1,102 @@
 .right-sidebar {
-    position: fixed;
-    right: 0;
-    height: 100%;
-    width: 30%;
-    box-shadow: 1px 0 1px 1px var(--light-white-color-2);
-    padding: 2rem 4rem 2rem 3rem;
+  position: fixed;
+  right: 0;
+  height: 100%;
+  width: 30%;
+  box-shadow: 1px 0 1px 1px var(--light-white-color-2);
+  padding: 2rem 4rem 2rem 3rem;
 }
 .right-sidebar .searchbar {
-    position: relative;
+  position: relative;
 }
 .right-sidebar .search-box {
-    outline: none;
-    border: none;
-    border-radius: 15px;
-    padding: var(--spacing-xs) var(--spacing-s);
-    color: var(--light-white-color-2);
-    background: var(--light-black-color);
-    width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  padding: var(--spacing-xs) var(--spacing-s);
+  color: var(--light-white-color-2);
+  background: var(--light-black-color);
+  width: 100%;
 }
 
 .right-sidebar .search-suggestion {
-    position: absolute;
-    top: 105%;
-    background-color: black;
-    color: white;
-    font-size: 1.6rem;
-    z-index: 10;
-    max-height: 500px;
-    min-height: 300px;
-    min-width: 100%;
-    overflow-y: auto;
+  position: absolute;
+  top: 105%;
+  background-color: black;
+  color: white;
+  font-size: 1.6rem;
+  z-index: 10;
+  max-height: 500px;
+  min-height: 300px;
+  min-width: 100%;
+  overflow-y: auto;
 }
 
 .right-sidebar .search-suggestion > * {
-    padding: 1rem 2rem;
-    display: block;
+  padding: 1rem 2rem;
+  display: block;
 }
 .right-sidebar .search-suggestion a:hover {
-    cursor: pointer;
-    background-color: #333;
+  cursor: pointer;
+  background-color: #333;
 }
 
 .right-sidebar .follow-suggestion {
-    margin: 2rem 0;
-    padding: 2rem 0;
-    background-color: var(--light-black-color);
-    color: var(--light-white-color-2);
-    border-radius: 2rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+  background-color: var(--light-black-color);
+  color: var(--light-white-color-2);
+  border-radius: 2rem;
 }
 
 .follow-suggestion-header {
-    padding-bottom: 2rem;
-    padding-inline: 2rem;
+  padding-bottom: 2rem;
+  padding-inline: 2rem;
 }
 
 .right-sidebar .user-list {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .follow-suggestion .user {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
 }
 .follow-suggestion .user:hover {
-    background-color: #222;
-    cursor: pointer;
+  background-color: #222;
+  cursor: pointer;
 }
 .right-sidebar .user-info {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 .right-sidebar .user-picture {
-    padding: 0;
+  padding: 0;
 }
 .right-sidebar .user-picture img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 .right-sidebar .user-picture i {
-    font-size: 5rem;
-    padding: 0;
+  font-size: 5rem;
+  padding: 0;
 }
 .right-sidebar .profile-info {
-    color: var(--light-white-color-2);
-    line-height: 1.3;
+  color: var(--light-white-color-2);
+  line-height: 1.3;
 }
 .right-sidebar .profile-name {
-    font-weight: 500;
+  font-weight: 500;
 }
 .right-sidebar .profile-username {
-    color: var(--grey-color);
+  color: var(--grey-color);
 }
 .right-sidebar .follow-btn {
-    border-radius: 2rem;
-    height: fit-content;
+  border-radius: 2rem;
+  height: fit-content;
 }

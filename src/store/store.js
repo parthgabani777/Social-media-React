@@ -4,11 +4,11 @@ import userReducer from "../slices/userSlice";
 import postsReducer from "../slices/postSlice";
 
 const store = configureStore({
-    reducer: {
-        authReducer,
-        userReducer,
-        postsReducer,
-    },
+  reducer: {
+    authReducer,
+    userReducer,
+    postsReducer,
+  },
 });
 
 export { store };

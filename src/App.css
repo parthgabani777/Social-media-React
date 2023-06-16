@@ -1,29 +1,29 @@
 @import url("https://fastui.netlify.app/style/library.css");
 
 .page-content {
-    color: var(--white-color);
-    font-size: 1.6rem;
-    padding: 3rem;
-    margin-left: 20%;
-    margin-right: 30%;
-    position: relative;
-    min-height: 100vh;
+  color: var(--white-color);
+  font-size: 1.6rem;
+  padding: 3rem;
+  margin-left: 20%;
+  margin-right: 30%;
+  position: relative;
+  min-height: 100vh;
 }
 
 .response-wrapper {
-    min-width: 40rem;
+  min-width: 40rem;
 }
 
 .text-grey {
-    color: var(--grey-color);
+  color: var(--grey-color);
 }
 
 .border-bottom {
-    border-bottom: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
 }
 
 @media only screen and (max-width: 1200px) {
-    .page-content {
-        margin-left: 0;
-    }
+  .page-content {
+    margin-left: 0;
+  }
 }

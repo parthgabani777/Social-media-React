@@ -1,99 +1,99 @@
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    height: 100%;
-    overflow-y: auto;
-    min-width: 20%;
-    padding: 0.5rem;
-    padding-bottom: var(--spacing-m);
-    box-shadow: 1px 0 1px -1px var(--light-white-color-2);
-    z-index: 2;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  min-width: 20%;
+  padding: 0.5rem;
+  padding-bottom: var(--spacing-m);
+  box-shadow: 1px 0 1px -1px var(--light-white-color-2);
+  z-index: 2;
 }
 .sidebar .sidebar-logo {
-    margin: 1rem;
-    padding: 1rem;
-    font-size: 4rem;
-    font-weight: 700;
-    width: fit-content;
-    color: var(--light-white-color-2);
+  margin: 1rem;
+  padding: 1rem;
+  font-size: 4rem;
+  font-weight: 700;
+  width: fit-content;
+  color: var(--light-white-color-2);
 }
 .sidebar .sidebar-logo:hover {
-    background: none;
+  background: none;
 }
 .sidebar a {
-    color: var(--white-color);
-    border-radius: 1.5rem;
-    padding: 1rem 1.5rem;
-    margin: 1rem;
+  color: var(--white-color);
+  border-radius: 1.5rem;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
 }
 .sidebar a:hover {
-    background: var(--primary-color);
-    cursor: pointer;
+  background: var(--primary-color);
+  cursor: pointer;
 }
 .sidebar a.active {
-    background: var(--primary-color);
+  background: var(--primary-color);
 }
 .sidebar i {
-    padding-right: 2rem;
+  padding-right: 2rem;
 }
 .create-post-btn {
-    margin: 1rem;
+  margin: 1rem;
 }
 .create-post-btn i {
-    padding-right: 1rem;
+  padding-right: 1rem;
 }
 
 .sidebar-footer {
-    margin-top: auto;
+  margin-top: auto;
 }
 .sidebar-profile {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 .sidebar-footer .profile-picture {
-    padding: 0;
+  padding: 0;
 }
 .sidebar-footer .profile-picture:hover {
-    background: none;
+  background: none;
 }
 .sidebar-footer .profile-picture img {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 .sidebar-footer .profile-picture i {
-    font-size: 5rem;
-    padding: 0;
+  font-size: 5rem;
+  padding: 0;
 }
 .sidebar-profile-info {
-    color: var(--light-white-color-2);
-    line-height: 1.3;
+  color: var(--light-white-color-2);
+  line-height: 1.3;
 }
 .sidebar-profile-name {
-    font-weight: 500;
+  font-weight: 500;
 }
 .sidebar-profile-username {
-    color: var(--grey-color);
+  color: var(--grey-color);
 }
 
 .sidebar-footer .auth-btn {
-    background: none;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    border-radius: 1rem;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-    width: calc(100% - 2rem);
+  background: none;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 1rem;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: calc(100% - 2rem);
 }
 .sidebar-footer .auth-btn:hover {
-    color: var(--light-white-color-2);
-    background: var(--primary-color);
+  color: var(--light-white-color-2);
+  background: var(--primary-color);
 }
 
 @media only screen and (max-width: 1200px) {
-    .sidebar {
-        display: none;
-    }
+  .sidebar {
+    display: none;
+  }
 }
