@@ -125,7 +125,9 @@ function Profile() {
               Followers
             </span>
             <span className="following">
-              <span className="fw-bold">{loggedInUser.following.length}</span>{" "}
+              <span className="fw-bold">
+                {loggedInUser.following?.length ?? 0}
+              </span>{" "}
               Following
             </span>
           </div>

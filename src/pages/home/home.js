@@ -43,8 +43,8 @@ function Home() {
       ? sortPosts(posts).filter(
           (post) =>
             post.userId === userId ||
-            loggedInUser.following.some(
-              (followinguser) => post.userId === followinguser._id
+            loggedInUser.following?.some(
+              (followingUser) => post.userId === followingUser._id
             )
         )
       : sortPosts(posts);

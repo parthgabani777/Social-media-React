@@ -12,7 +12,7 @@ import {
 import { login, signup } from "./authSlice";
 
 const initialState = {
-  loggedInUser: null,
+  loggedInUser: {},
   allUser: null,
   userData: null,
   userPosts: null,

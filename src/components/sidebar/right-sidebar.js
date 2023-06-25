@@ -11,6 +11,7 @@ export function RightSidebar() {
   const navigation = useNavigate();
   const { isAuthorized, token } = useSelector((state) => state.authReducer);
   const { allUser, loggedInUser } = useSelector((state) => state.userReducer);
+  const { following = [] } = loggedInUser;
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -39,7 +40,7 @@ export function RightSidebar() {
 
     const isMatchingSearch = user.username
       .toLowerCase()
-      .search(search.toLowerCase());
+      .includes(search.toLowerCase());
     return isMatchingSearch === -1 ? false : true;
   });
 
@@ -107,7 +108,7 @@ export function RightSidebar() {
   const filteredUsers = allUser?.filter(
     (currentUser) =>
       loggedInUser._id !== currentUser._id &&
-      !loggedInUser.following.some((user1) => user1._id === currentUser._id)
+      !following?.some((user1) => user1._id === currentUser._id)
   );
 
   const followUserClickHandler = async (userId) => {
