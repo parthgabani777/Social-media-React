@@ -43,7 +43,6 @@ function Setting() {
     reader.readAsDataURL(e.target.files[0]);
 
     reader.onload = () => {
-      console.log(reader.result);
       reader.readyState === 2 &&
         setUserData({
           ...userData,

@@ -105,11 +105,12 @@ export function RightSidebar() {
   if (!isAuthorized)
     return <div className="right-sidebar text-s">{searchBar}</div>;
 
-  const filteredUsers = allUser?.filter(
-    (currentUser) =>
-      loggedInUser._id !== currentUser._id &&
-      !following?.some((user1) => user1._id === currentUser._id)
-  );
+  const filteredUsers =
+    allUser?.filter(
+      (currentUser) =>
+        loggedInUser._id !== currentUser._id &&
+        !following?.some((user1) => user1._id === currentUser._id)
+    ) ?? [];
 
   const followUserClickHandler = async (userId) => {
     try {

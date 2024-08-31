@@ -30,22 +30,29 @@ function Login() {
       [e.target.id]: e.target.value,
     });
   };
-  const fillGuestLoginCredentials = (e) => {
-    e.preventDefault();
-    setLoginCredentials({
-      username: "parthgabani",
-      password: "parth123",
-    });
-  };
 
-  const loginClickHandler = async (e) => {
-    e.preventDefault();
+  const handleLogin = async ({ credentials = loginCredentials }) => {
     try {
-      await dispatch(login({ loginCredentials })).unwrap();
+      await dispatch(login({ loginCredentials: credentials })).unwrap();
       navigation(from);
     } catch (error) {
       toast.error(error);
     }
+  };
+
+  const fillGuestLoginCredentials = async (e) => {
+    e.preventDefault();
+    const credentials = {
+      username: "parthgabani",
+      password: "parth123",
+    };
+    setLoginCredentials(credentials);
+    handleLogin({ credentials });
+  };
+
+  const loginClickHandler = async (e) => {
+    e.preventDefault();
+    handleLogin();
   };
 
   if (isLoading) return <CustomLoader />;
